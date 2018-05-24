@@ -1,0 +1,162 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		44E218B820B6319300764903 /* .DS_Store */ = {isa = PBXFileReference; lastKnownFileType = file; path = .DS_Store; sourceTree = "<group>"; };
+		44E218B920B6319300764903 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		44E218BA20B6319300764903 /* Bootloader */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Bootloader; sourceTree = "<group>"; };
+		44E218BB20B6319300764903 /* Image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Image; sourceTree = "<group>"; };
+		44E218BC20B6319300764903 /* Kernel */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Kernel; sourceTree = "<group>"; };
+		44E218BD20B6319300764903 /* License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		44E218BE20B6319300764903 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		44E218BF20B6319300764903 /* Readme.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
+		44E218C020B6319300764903 /* run.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = run.sh; sourceTree = "<group>"; };
+		44E218C120B6319300764903 /* Toolchain */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Toolchain; sourceTree = "<group>"; };
+		44E218C220B6319300764903 /* Userland */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Userland; sourceTree = "<group>"; };
+		44E218C320B6319300764903 /* x64BareBones.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x64BareBones.png; sourceTree = "<group>"; };
+		44E218C420B6319300764903 /* x64BareBones.sublime-project */ = {isa = PBXFileReference; lastKnownFileType = text; path = "x64BareBones.sublime-project"; sourceTree = "<group>"; };
+		44E218C520B6319300764903 /* x64BareBones.sublime-workspace */ = {isa = PBXFileReference; lastKnownFileType = text; path = "x64BareBones.sublime-workspace"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		44E218B220B6319300764903 = {
+			isa = PBXGroup;
+			children = (
+				44E218B820B6319300764903 /* .DS_Store */,
+				44E218B920B6319300764903 /* .gitignore */,
+				44E218BA20B6319300764903 /* Bootloader */,
+				44E218BB20B6319300764903 /* Image */,
+				44E218BC20B6319300764903 /* Kernel */,
+				44E218BD20B6319300764903 /* License.txt */,
+				44E218BE20B6319300764903 /* Makefile */,
+				44E218BF20B6319300764903 /* Readme.txt */,
+				44E218C020B6319300764903 /* run.sh */,
+				44E218C120B6319300764903 /* Toolchain */,
+				44E218C220B6319300764903 /* Userland */,
+				44E218C320B6319300764903 /* x64BareBones.png */,
+				44E218C420B6319300764903 /* x64BareBones.sublime-project */,
+				44E218C520B6319300764903 /* x64BareBones.sublime-workspace */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		44E218B720B6319300764903 /* TPARQUI */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 44E218C620B6319300764903 /* Build configuration list for PBXLegacyTarget "TPARQUI" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/fermingomez/Desktop/TPARQUI;
+			dependencies = (
+			);
+			name = TPARQUI;
+			passBuildSettingsInEnvironment = 1;
+			productName = TPARQUI;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		44E218B320B6319300764903 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = 44E218B620B6319300764903 /* Build configuration list for PBXProject "TPARQUI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 44E218B220B6319300764903;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				44E218B720B6319300764903 /* TPARQUI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		44E218B420B6319300764903 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		44E218B520B6319300764903 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		44E218C720B6319300764903 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = TPARQUI;
+			};
+			name = Debug;
+		};
+		44E218C820B6319300764903 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = TPARQUI;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		44E218B620B6319300764903 /* Build configuration list for PBXProject "TPARQUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44E218B420B6319300764903 /* Debug */,
+				44E218B520B6319300764903 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		44E218C620B6319300764903 /* Build configuration list for PBXLegacyTarget "TPARQUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44E218C720B6319300764903 /* Debug */,
+				44E218C820B6319300764903 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 44E218B320B6319300764903 /* Project object */;
+}
