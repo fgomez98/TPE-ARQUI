@@ -3,6 +3,7 @@
 #include <defs.h>
 #include <interrupts.h>
 
+//esto hace que todos los fields del struct queden contiguos
 #pragma pack(push)		/* Push de la alineación actual */
 #pragma pack (1) 		/* Alinear las siguiente estructuras a 1 byte */
 
@@ -29,12 +30,16 @@ void load_idt() {
 
 
 	//Solo interrupcion timer tick habilitadas
-	picMasterMask(0xFE); 
+	picMasterMask(0xFE);
 	picSlaveMask(0xFF);
-        
+
 	_sti();
 }
 
+/*idt[0h] es la pos 0 de la tabla, idt[80h] es la pos 80h de la tabla.
+Lo que hace esta función es poner en la posición index de la tabla
+la dirección de la función que atiende a la interrupción
+*/
 static void setup_IDT_entry (int index, uint64_t offset) {
   idt[index].selector = 0x08;
   idt[index].offset_l = offset & 0xFFFF;

@@ -50,7 +50,21 @@ void * initializeKernelBinary()
 	return getStackBase();
 }
 
+void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4)
+{
+	Colour colour;
+	colour.Red = 255;
+	colour.Green = 255;
+  colour.Blue = 255;
+	switch(arg1) {
+		case 0: putStr("PRobando handler", colour ); break;
+
+	}
+}
+
 int main() {
+
+	load_idt();
 	/*
 	for (int i =0 ; i < 300;  i ++) {
 		putPixel(10, i, 3);
@@ -62,6 +76,6 @@ int main() {
   	colour.Blue = 255;
     putStr("hola", colour);
     putStr(" 234", colour);
-    
+
 	return 0;
 }
