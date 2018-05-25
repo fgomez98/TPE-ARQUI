@@ -2,9 +2,14 @@
 #define FONT_H
 
 unsigned char * pixel_map(int c);
+unsigned char * digitalClock_map(int number);
+unsigned char * digitalClock_Test();
+unsigned char * digitalColon();
 
 #define CHAR_WIDTH 8
 #define CHAR_HEIGHT 16
+#define BIG_NUMBER_WIDTH 64
+#define BIG_NUMBER_HEIGHT 36
 
 #define ________ 0x00
 #define _______X 0x01
