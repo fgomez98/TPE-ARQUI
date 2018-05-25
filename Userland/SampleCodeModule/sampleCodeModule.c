@@ -7,5 +7,13 @@ static int var2 = 0;
 
 
 int main() {
-	shell();
+	char* command;
+	while (1){
+			scanf("%s", command);
+	}
+}
+
+
+void scanf(char* fmt, char* buffer){
+	
 }
