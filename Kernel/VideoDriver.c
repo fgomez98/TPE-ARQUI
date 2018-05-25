@@ -7,11 +7,12 @@
 //
 #include "VideoDriver.h"
 #include "font.h"
+#include "lib.h"
 #define CHAR_WIDTH 8
 #define CHAR_HEIGHT 16
+static char buffer[64] = { '0' }; // esto es para imprimir hexa
 #define Y_SPACE 2// espacio entre lineas
 #define X_SPACE 1// espacio entre caracteres
-static char buffer[64] = { '0' }; // esto es para imprimir hexa
 
 typedef struct __attribute__((packed)) ModeInfoBlock {
         uint16_t ModeAttributes;
@@ -51,15 +52,26 @@ typedef struct __attribute__((packed)) ModeInfoBlock {
         uint16_t OffScreenMemSize;
 } Vesa;
 
+Colour black = {0, 0, 0};
+Colour white = {255, 255, 255};
 static Vesa * video = (Vesa*)0x5C00;
-static int XPOSITION = 5;
-static int YPOSITION = 5;
+static int XPOSITION = X_SPACE;
+static int YPOSITION = Y_SPACE;
+static int XPOSITION2 = X_SPACE;
+static int YPOSITION2 = Y_SPACE;
 
 void memCpy(void *dest, void *src, size_t n) { // tendria que guardarla en otro lado
     char *csrc = (char *)src;
     char *cdest = (char *)dest;
     for (int i=0; i<n; i++) {
         cdest[i] = csrc[i];
+    }
+}
+
+void memSet(void * src, int c, size_t n) {
+    char * csrc = (char *) src;
+    for (int i = 0; i < n; i++) {
+        *(csrc) = (unsigned char) c;
     }
 }
 
@@ -75,13 +87,12 @@ void printChar(char c, Colour colour) {
     char font;
     char *  font_char = pixel_map(c);
     for (int y = 0; y < 16; y++) {
-        char font = font_char[y];
+        font = font_char[y];
         for (int x = 0; x < 8; x++) {
             if (((font >> 8-x) %2) != 0){
                 putPixel(x + XPOSITION, y + YPOSITION, colour);
             } else {
-                Colour colourBlank = {0, 0, 0};
-                putPixel(x + XPOSITION, y + YPOSITION, colourBlank);
+                putPixel(x + XPOSITION, y + YPOSITION, black);
             }
         }
     }
@@ -94,62 +105,165 @@ int RGBColourToInt(Colour colour) {
   return c;
 }
 
+// imprime un caracter en pantalla
 void putChar(char c, Colour colour) {
     boundaryCorrector();
     printChar(c, colour);
-    XPOSITION += 9;
+    XPOSITION += CHAR_WIDTH + X_SPACE;
     boundaryCorrector();
 }
 
-void putStr(char * str, Colour colour) { // lee hasta el barra cero, si no lo tiene como hago para que corte en algun momento (excepcion)
+void putStrAux(char * str, Colour colour) {
+    int i = strlen(str);
+    if ((XPOSITION+(CHAR_WIDTH+X_SPACE)*i) > video->XResolution) {
+        newLine();
+    }
     char c;
-    int i = 0;
-    while ( (c = str[i++]) != '\0') {
+    i = 0;
+    while ( (c = str[i++])) {
         putChar(c, colour);
     }
 }
 
-
-
+// imprime un string en pantalla
+void putStr(char * str, Colour colour) { // lee hasta el cero, si no lo tiene como hago para que corte en algun momento (excepcion)
+    char buff[24] = {0};
+    char c;
+    int i = 0;
+    int j = 0;
+    while ((c=str[i++])) {
+        buff[j++] = c;
+        if (c == ' ') {
+            buff[j] = 0;
+            putStrAux(buff, colour);
+            memSet(buff, 0, j);
+            j = 0;
+        }
+    }
+    if (c == 0) {
+        putStrAux(buff, colour);
+    }
+}
 
 void newLine() {
-    YPOSITION += 16;
-    XPOSITION = 5;
-    // chequear que no se vaya de la pantalla y
+    YPOSITION += 16 + Y_SPACE;
+    XPOSITION = X_SPACE;
+    boundaryCorrector();
 }
 
 void boundaryCorrector() {
     if (video->XResolution < XPOSITION || ((video->XResolution - XPOSITION) < 8)) {
         newLine();
-    } else if (video->YResolution <= YPOSITION) {
-        // que hago??
+    } else if ((video->YResolution -Y_SPACE - CHAR_HEIGHT) <= YPOSITION) {
+        YPOSITION -= CHAR_HEIGHT;
+        moveScreenUp();
     }
 }
 
+//corre las lineas hacia arriba excluyendo la ultima
 void moveScreenUp() {
-    unsigned whereOnScreen = (16+Y_SPACE)*(video->pitch);
+    unsigned whereOnScreen = (CHAR_HEIGHT+(2*Y_SPACE))*(video->pitch) + X_SPACE*(video->BitsPerPixel/8);
     char * source = (char *) (video->PhysBasePtr + whereOnScreen);
-    char * dest = (char *) (video->PhysBasePtr);
-    int size = ((video->YResolution)-16-Y_SPACE)*(video->XResolution);
+    unsigned whereOnScreen2 = (Y_SPACE)*(video->pitch) + X_SPACE*(video->BitsPerPixel/8);
+    char * dest = (char *) (video->PhysBasePtr + whereOnScreen2);
+    int size = ((video->YResolution)-CHAR_HEIGHT-Y_SPACE)*(video->XResolution);
     memCpy(dest, source, size);
-    for (int y = video->YResolution - 2*(16+Y_SPACE) ; y < video->YResolution -16; y ++) {
-        for (int x = 0; x < video->XResolution; x++) {
-            Colour colourBlank = {0, 0, 0};
-            putPixel(x, y , colourBlank);
+    for (int y = video->YResolution - (2*(CHAR_HEIGHT+Y_SPACE)) ; y < video->YResolution -(CHAR_HEIGHT+(2*Y_SPACE)); y ++) {
+        for (int x = X_SPACE; x < video->XResolution-X_SPACE; x++) {
+            putPixel(x, y , black);
         }
     }
-
+    
 }
 
+// impreime la hora en formato hh:mm:ss el paramtero es un string que respeta el formato especificado
+void putDigitalClockExp(Colour colour, unsigned char * fontExp) {
+    char font;
+    int xpos = XPOSITION;
+    for (int y = 0; y < 36; y++) {
+        for (int j = 0; j < 8; j++) {
+            font = fontExp[(y*8)+j];
+            for (int x = 0; x < 8; x++) {
+                if (((font >> 8-x) %2) != 0){
+                    putPixel(x + XPOSITION, y + YPOSITION, colour);
+                } else {
+                    Colour colourBlank = {0, 0, 0};
+                    putPixel(x + XPOSITION, y + YPOSITION, colourBlank);
+                }
+            }
+            XPOSITION += 8;
+        }
+        XPOSITION = xpos;
+    }
+    XPOSITION += (64 + 10); // 10 es la distancia entre digitos
+}
 
+void putDigitalColon(Colour colour) {
+    putDigitalClockExp(colour, digitalColon());
+}
 
+void putDigitalNumber(Colour colour, int number) {
+    putDigitalClockExp(colour, digitalClock_map(number));
+}
 
+// la insercion de texto se realiza en el la parte inferior de la pantalla, unicamente se puede insertar en una linea del ancho de la pantalla
+void modeComand() {
+    XPOSITION2 = XPOSITION;
+    YPOSITION2 = YPOSITION;
+    XPOSITION = X_SPACE;
+    YPOSITION = (video->YResolution) - Y_SPACE - CHAR_HEIGHT;
+    putStr(">> ", white);
+}
 
+//al inicio esta en modo screen, inserta en la pantalla en la parte superior
+void modeScreen() {
+    XPOSITION = XPOSITION2;
+    YPOSITION = YPOSITION2;
+}
 
+// modo que permite mostrar el reloj en pantalla
+void modeDigitalClock() {
+    XPOSITION2 = X_SPACE;
+    YPOSITION2 = Y_SPACE;
+    clearScreen();
+    XPOSITION = (video->XResolution/2) - 281;
+    YPOSITION = (video->YResolution/2) - 18;
+}
 
+// modo shell
+void shellMode() {
+    clearScreen();
+    modeScreen();
+    modeComand();
+}
 
+// borra la pantalla a partir de la poscion (x, y) dada
+void clear(int i, int j) {
+    for (int y = j; y < video->YResolution; y++) {
+        for (int x = i; x < video->XResolution; x++) {
+            putPixel(x, y, black);
+        }
+    }
+}
 
+// borra la linea de comandos en pantalla
+void clearComand() {
+    clear(0, (video->XResolution-CHAR_HEIGHT-Y_SPACE));
+}
 
+// borra la pantalla entera
+void clearScreen() {
+    clear(0, 0);
+}
+
+// longitud de palabra
+int strlen(const char * str) {
+    int i = 0;
+    while(*(str+i)) {
+        i++;
+    }
+    return i;
+}
 
 
 //pasar de uint64_t a hexa y de ahi imprmir en pantalla
