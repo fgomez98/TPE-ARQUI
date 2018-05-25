@@ -5,7 +5,7 @@
 #include <moduleLoader.h>
 #include "idtLoader.h"
 
-//probando
+extern void probandoExcepcion();
 
 extern uint8_t text;
 extern uint8_t rodata;
@@ -18,6 +18,8 @@ static const uint64_t PageSize = 0x1000;
 
 static void * const sampleCodeModuleAddress = (void*)0x400000;
 static void * const sampleDataModuleAddress = (void*)0x500000;
+
+
 
 typedef int (*EntryPoint)();
 
@@ -50,8 +52,7 @@ void * initializeKernelBinary()
 	return getStackBase();
 }
 
-void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4)
-{
+/*{
 	Colour colour;
 	colour.Red = 255;
 	colour.Green = 255;
@@ -60,11 +61,14 @@ void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4)
 		case 0: putStr("PRobando handler", colour ); break;
 
 	}
-}
+}*/
 
 int main() {
-
+	// Pone en la tabla IDT el numero de excepcion o interrupcion junto
+	//con la direccion de la funcion que la atiende
 	load_idt();
+	probandoExcepcion();
+
 	/*
 	for (int i =0 ; i < 300;  i ++) {
 		putPixel(10, i, 3);
@@ -75,7 +79,8 @@ int main() {
 	colour.Green = 255;
   	colour.Blue = 255;
     putStr("hola", colour);
-    putStr(" 234", colour);
+		newLine();
+    putStr("234", colour);
 
 	return 0;
 }

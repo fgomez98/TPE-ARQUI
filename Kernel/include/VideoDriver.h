@@ -1,6 +1,6 @@
 //
 //  VideoDriver.h
-//  
+//
 //
 //  Created by Fermin Gomez on 5/23/18.
 //
@@ -22,5 +22,6 @@
     void putStr(char * str, Colour colour);
     void putChar(char c, Colour colour);
 	int RGBColourToInt(Colour colour);
+	void putHexa( uint64_t* number, Colour colour);
 
 #endif /* VideoDriver_h */

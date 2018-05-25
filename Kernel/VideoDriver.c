@@ -1,6 +1,6 @@
 //
 //  VideoDriver.c
-//  
+//
 //
 //  Created by Fermin Gomez on 5/23/18.
 //
@@ -108,6 +108,12 @@ void putStr(char * str, Colour colour) { // lee hasta el barra cero, si no lo ti
     }
 }
 
+//pasar de uint64_t a hexa y de ahi imprmir en pantalla
+void putHexa( uint64_t* number, Colour colour){
+
+}
+
+
 void newLine() {
     YPOSITION += 16;
     XPOSITION = 5;
@@ -134,7 +140,5 @@ void moveScreenUp() {
             putPixel(x, y , colourBlank);
         }
     }
-    
+
 }
-
-

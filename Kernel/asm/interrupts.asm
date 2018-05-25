@@ -60,6 +60,7 @@ SECTION .text
 	pushState
 
 	mov rdi, %1 ; pasaje de parametro
+	mov rsi, rsp ; paso como segundo parametro la direccion del stack en el que estan pusheados todos los registros
 	call irqDispatcher
 
 	; signal pic EOI (End of Interrupt)
@@ -76,6 +77,7 @@ SECTION .text
 	pushState
 
 	mov rdi, %1 ; pasaje de parametro
+	mov rsi, rsp ; paso como segundo parametro la direccion del stack en el que estan pusheados todos los registros
 	call exceptionDispatcher
 
 	popState
