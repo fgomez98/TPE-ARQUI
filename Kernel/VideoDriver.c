@@ -11,6 +11,7 @@
 #define CHAR_HEIGHT 16
 #define Y_SPACE 2// espacio entre lineas
 #define X_SPACE 1// espacio entre caracteres
+static char buffer[64] = { '0' }; // esto es para imprimir hexa
 
 typedef struct __attribute__((packed)) ModeInfoBlock {
         uint16_t ModeAttributes;
@@ -108,10 +109,7 @@ void putStr(char * str, Colour colour) { // lee hasta el barra cero, si no lo ti
     }
 }
 
-//pasar de uint64_t a hexa y de ahi imprmir en pantalla
-void putHexa( uint64_t* number, Colour colour){
 
-}
 
 
 void newLine() {
@@ -141,4 +139,59 @@ void moveScreenUp() {
         }
     }
 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//pasar de uint64_t a hexa y de ahi imprmir en pantalla
+void putHexa( uint64_t value, Colour colour){
+  	printBase(value, 16, colour);
+}
+
+void printBase(uint64_t value, uint64_t base, Colour colour)
+{
+    uintToBase(value, buffer, base);
+    putStr(buffer, colour);
+}
+
+static uint64_t uintToBase(uint64_t value, char * buffer, uint64_t base)
+{
+	char *p = buffer;
+	char *p1, *p2;
+	uint64_t digits = 0;
+
+	//Calculate characters for each digit
+	do
+	{
+		uint64_t remainder = value % base;
+		*p++ = (remainder < 10) ? remainder + '0' : remainder + 'A' - 10;
+		digits++;
+	}
+	while (value /= base);
+
+	// Terminate string in buffer.
+	*p = 0;
+
+	//Reverse string in buffer.
+	p1 = buffer;
+	p2 = p - 1;
+	while (p1 < p2)
+	{
+		char tmp = *p1;
+		*p1 = *p2;
+		*p2 = tmp;
+		p1++;
+		p2--;
+	}
+
+	return digits;
 }

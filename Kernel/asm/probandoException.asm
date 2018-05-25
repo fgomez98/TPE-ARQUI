@@ -3,5 +3,7 @@ GLOBAL probandoExcepcion
 section .text
 
 probandoExcepcion:
-  int 0h
+  mov rax, 5
+  mov rbx, 6
+  int 6h
   ret

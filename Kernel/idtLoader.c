@@ -25,9 +25,11 @@ static void setup_IDT_entry (int index, uint64_t offset);
 
 void load_idt() {
   setup_IDT_entry (0x00, (uint64_t)&_exception0Handler);//division por 0
-  //esta vino escrita, es la del timer tick. la tenemos q hacer no?
+  setup_IDT_entry (0x06, (uint64_t)&_exceptionInvalidOpcodeHandler);//codigo de operacion invalido
+
+  //esta vino escrita, es la del timer tick.
   setup_IDT_entry (0x20, (uint64_t)&_irq00Handler);
-  //le agregue estas dos
+
   setup_IDT_entry (0x21, (uint64_t)&_irq01Handler); //itnerrupción de teclado
   //setup_IDT_entry (0x80, (uint64_t)&_sysCallHandler);
 
