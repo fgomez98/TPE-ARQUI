@@ -1,5 +1,6 @@
 #include "KeyboardDriver.h"
-#include "naiveConsole.h"
+#include "VideoDriver.h"
+
 
 static const char map[] = { '\0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\'', '\0', '\b',
     '\t', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '\0', '+', '\n',
@@ -8,13 +9,18 @@ static const char map[] = { '\0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '
 };
 
 void Keyboard_Handler() {
-    int i = getKey();
-  /*  if (i > 0 && i < 128) {
-        char j = map[i-1];
+  Colour colour;
+  colour.Red = 255;
+  colour.Green = 255;
+  colour.Blue = 255;
+  int k = getKey();
+
+   if (k > 0 && k < 128) {
+        char j = map[k-1];
         if (j != '\0') {
-            ncNewline();
-            ncPrintChar(j);
+            //newLine();
+            putChar(j, colour);
         }
     }
-*/
+
 }
