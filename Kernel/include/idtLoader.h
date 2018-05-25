@@ -4,6 +4,6 @@
 #include <stdint.h>
 
 void load_idt();
-
+void _syscall_handler();
 
 #endif

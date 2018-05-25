@@ -84,3 +84,16 @@ int main() {
 
 	return 0;
 }
+
+
+
+void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4){
+	Colour colour;
+	colour.Red = 255;
+	colour.Green = 255;
+		colour.Blue = 255;
+	switch(arg1) {
+		case 0: putStr("probando syscall handler", colour);; break;
+		case 1: ; break;
+	}
+}
