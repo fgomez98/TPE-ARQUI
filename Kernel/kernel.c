@@ -65,6 +65,12 @@ void * initializeKernelBinary()
 
 	}
 }*/
+void delay(int i) {
+    for (int j = 0; j < i; j++) {
+        for (int k = 0; k < i; k++) {
+        }
+    }
+}
 
 int main() {
 	// Pone en la tabla IDT el numero de excepcion o interrupcion junto
@@ -79,8 +85,14 @@ int main() {
     putStr("234", colour);
     newLine();
     putStr("234", colour);
-    //modeDigitalClock();
-    //showTime(); // esta en while(1)
+    delay(10000);
+    modeScreen();
+    putStr("234", colour);
+    newLine();
+    putStr("234", colour);
+    delay(10000);
+    modeDigitalClock();
+    showTime(); // esta en while(1)
     putChar('s', colour);
     while (1) {
         char getchar();
@@ -94,8 +106,6 @@ int main() {
 
 	return 0;
 }
-
-
 
 void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4){
 	Colour colour;

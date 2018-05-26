@@ -13,8 +13,6 @@
 static char buffer[64] = { '0' }; // esto es para imprimir hexa
 #define Y_SPACE 2// espacio entre lineas
 #define X_SPACE 1// espacio entre caracteres
-#define TRUE 1
-#define FALSE 0
 
 typedef struct __attribute__((packed)) ModeInfoBlock {
         uint16_t ModeAttributes;
@@ -61,7 +59,7 @@ static int XPOSITION = X_SPACE;
 static int YPOSITION = Y_SPACE;
 static int XPOSITION2 = X_SPACE;
 static int YPOSITION2 = Y_SPACE;
-static int SHELL = TRUE;
+
 
 void putPixel(int x, int y, Colour colour) {
 	unsigned whereOnScreen = y*video->pitch + x*(video->BitsPerPixel/8);
@@ -126,6 +124,8 @@ void putStr(char * str, Colour colour) { // lee hasta el cero, si no lo tiene co
             putStrAux(buff, colour);
             memSet(buff, 0, j);
             j = 0;
+        } else if (c == '\n') {
+            newLine();
         }
     }
     if (c == 0) {
@@ -209,7 +209,7 @@ void putTime(char * time, Colour colour) { // arreglar el caso 01:04:035
 }
 
 // la insercion de texto se realiza en el la parte inferior de la pantalla, unicamente se puede insertar en una linea del ancho de la pantalla
-void modeComand() {
+/*void modeComand() {
     XPOSITION2 = XPOSITION;
     YPOSITION2 = YPOSITION;
     XPOSITION = X_SPACE;
@@ -222,19 +222,21 @@ void modeScreen() {
     XPOSITION = XPOSITION2;
     YPOSITION = YPOSITION2;
 }
- 
+ */
 // modo shell
-void shellMode() {
- clearScreen();
- modeScreen();
- modeComand();
+//al inicio esta en modo screen, inserta en la pantalla en la parte superior
+void modeScreen() {
+    clearScreen();
+    //modeScreen();
+    //modeComand();
+    XPOSITION = X_SPACE;
+    YPOSITION = Y_SPACE;
 }
 
 // modo que permite mostrar el reloj en pantalla
 void modeDigitalClock() {
-    SHELL = FALSE;
-    XPOSITION2 = X_SPACE;
-    YPOSITION2 = Y_SPACE;
+    //XPOSITION2 = X_SPACE;
+    //YPOSITION2 = Y_SPACE;
     clearScreen();
     XPOSITION = (video->XResolution/2) - 281;
     YPOSITION = (video->YResolution/2) - 18;

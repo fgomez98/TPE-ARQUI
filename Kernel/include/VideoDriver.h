@@ -28,8 +28,8 @@
     void modeScreen();
     void modeDigitalClock();
     void clearScreen();
-    void modeComand();
-    void shellMode();
+ //   void modeComand();
+  //  void shellMode();
     void clearComand();
     void newLine();
     //static uint64_t uintToBase(uint64_t value, char * buffer, uint64_t base);
