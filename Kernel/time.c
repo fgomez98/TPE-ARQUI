@@ -20,12 +20,23 @@ int seconds_elapsed() {
 
 char * getTime() {
     static char buf[8] = {0};
-    uintToBase((getHour()-3), buf, 10); // las horas me esta tirando cualquiera, el problema esta en que cuando son las 24 == 00
-    // la cuenta es 0-3 = -3 al pasarlo a string se produce un error 
+    uintToBase(abs((getHour()-3)%24), buf, 10); 
+    if (buf[1] == 0) {
+        buf[1] = buf[0];
+        buf[0] = '0';
+    }
     buf[2] = ':';
     uintToBase(getMin(), buf+3, 10);
+    if (buf[4] == 0) {
+        buf[4] = buf[3];
+        buf[3] = '0';
+    }
     buf[5] = ':';
     uintToBase(getSec(), buf + 6, 10);
+    if (buf[7] == 0) {
+        buf[7] = buf[6];
+        buf[6] = '0';
+    }
     return buf;
 }
 
@@ -37,6 +48,7 @@ void showTime() {
         putTime(time, white);
     }
 }
+
 
 
 

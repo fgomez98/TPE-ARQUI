@@ -90,3 +90,11 @@ void memSet(void * src, int c, int n) {
         *(csrc) = (unsigned char) c;
     }
 }
+
+int abs(int num) {
+    if (num < 0) {
+        return -1*num;
+    } else {
+        return num;
+    }
+}

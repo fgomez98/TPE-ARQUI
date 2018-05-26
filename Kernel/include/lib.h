@@ -9,5 +9,5 @@ char *cpuVendor(char *result);
 uint64_t uintToBase(uint64_t value, char * buffer, uint64_t base);
 void memCpy(void *dest, void *src, int n);
 void memSet(void * src, int c, int n);
-
+int abs(int num);
 #endif
