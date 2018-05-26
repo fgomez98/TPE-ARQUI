@@ -27,6 +27,12 @@ int main() {
 			else if(strcmp("horaDigital", command) == 0){
 				showDigitalHour();
 			}
+			else if(strcmp("divisionPor0exc", command) == 0){
+				show0exc();
+			}
+			else if(strcmp("", command) == 0){
+				showOpcodeExc();
+			}
 			else if(strcmp("salir", command) == 0){
 				running = 0;
 			}
