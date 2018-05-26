@@ -32,8 +32,9 @@
     void shellMode();
     void clearComand();
     void newLine();
-    static uint32_t uintToBase(uint64_t value, char * buffer, uint32_t base);
-	void printBase(uint64_t value, uint64_t base, Colour colour);
+    //static uint64_t uintToBase(uint64_t value, char * buffer, uint64_t base);
+    void printBase(uint64_t value, uint64_t base, Colour colour);
 	void putHexa( uint64_t number, Colour colour);
+void putTime(char * time, Colour colour);
 
 #endif /* VideoDriver_h */

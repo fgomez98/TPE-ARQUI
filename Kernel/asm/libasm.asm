@@ -1,30 +1,5 @@
 GLOBAL cpuVendor
-GLOBAL getYResolution
-GLOBAL getXResolution
-
 section .text
-
-getXResolution:
-	push rbp
-	mov rbp, rsp
-
-	mov rax, 0
-	in al, 0x5084
-	
-	mov rsp, rbp
-	pop rbp
-	ret
-
-getYResolution:
-	push rbp
-	mov rbp, rsp
-
-	mov rax, 0
-	in al, 0x5086
-	
-	mov rsp, rbp
-	pop rbp
-	ret		
 
 cpuVendor:
 	push rbp

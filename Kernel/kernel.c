@@ -4,6 +4,8 @@
 #include <lib.h>
 #include <moduleLoader.h>
 #include "idtLoader.h"
+#include "time.h"
+#include "String.h"
 
 extern void probandoExcepcion();
 
@@ -62,18 +64,29 @@ void * initializeKernelBinary()
 
 	}
 }*/
+int countDigits(int num){
+    int dig = 1;
+    while((num/=10) != 0) dig++;
+    return dig;
+}
+
+char * intToStr(int num){
+    int dig = countDigits(num);
+    char numbers[4] = {0};
+    int count=0;
+    while(count!=dig){
+        numbers[dig-1-count++]=num%10+48;
+        num /= 10;
+    }
+    numbers[dig]=0;
+    return numbers;
+}
 
 int main() {
 	// Pone en la tabla IDT el numero de excepcion o interrupcion junto
 	//con la direccion de la funcion que la atiende
 	load_idt();
 	probandoExcepcion();
-
-	/*
-	for (int i =0 ; i < 300;  i ++) {
-		putPixel(10, i, 3);
-	}
-	*/
 	Colour colour;
 	colour.Red = 255;
 	colour.Green = 255;
@@ -81,6 +94,9 @@ int main() {
     putStr("hola", colour);
 		newLine();
     putStr("234", colour);
+    newLine();
+    modeDigitalClock();
+    showTime(); // esta en while(1) 
 
 	return 0;
 }

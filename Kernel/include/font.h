@@ -5,6 +5,7 @@ unsigned char * pixel_map(int c);
 unsigned char * digitalClock_map(int number);
 unsigned char * digitalClock_Test();
 unsigned char * digitalColon();
+unsigned char * digitalBlank();
 
 #define CHAR_WIDTH 8
 #define CHAR_HEIGHT 16

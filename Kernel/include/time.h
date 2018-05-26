@@ -4,6 +4,7 @@
 void timer_handler();
 int ticks_elapsed();
 int seconds_elapsed();
-void getTime();
+char * getTime();
+void showTime();
 
 #endif

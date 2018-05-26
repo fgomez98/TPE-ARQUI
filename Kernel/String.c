@@ -10,15 +10,14 @@
 
 char* strcpy(char* destination, const char* source) {
     if (destination == NULL) {
-        
         return NULL;
     }
     char *ptr = destination;
-    while (*source != '\0') {
+    while (*source) {
         *destination = *source;
         destination++;
         source++;
     }
-    *destination = '\0';
+    *destination = 0;
     return ptr;
 }

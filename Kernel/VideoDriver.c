@@ -60,21 +60,6 @@ static int YPOSITION = Y_SPACE;
 static int XPOSITION2 = X_SPACE;
 static int YPOSITION2 = Y_SPACE;
 
-void memCpy(void *dest, void *src, size_t n) { // tendria que guardarla en otro lado
-    char *csrc = (char *)src;
-    char *cdest = (char *)dest;
-    for (int i=0; i<n; i++) {
-        cdest[i] = csrc[i];
-    }
-}
-
-void memSet(void * src, int c, size_t n) {
-    char * csrc = (char *) src;
-    for (int i = 0; i < n; i++) {
-        *(csrc) = (unsigned char) c;
-    }
-}
-
 void putPixel(int x, int y, Colour colour) {
 	unsigned whereOnScreen = y*video->pitch + x*(video->BitsPerPixel/8);
 	char * screen = (char *) (video->PhysBasePtr + whereOnScreen);
@@ -177,7 +162,7 @@ void moveScreenUp() {
 }
 
 // impreime la hora en formato hh:mm:ss el paramtero es un string que respeta el formato especificado
-void putDigitalClockExp(Colour colour, unsigned char * fontExp) {
+void printDigitalClockExp(Colour colour, unsigned char * fontExp) {
     char font;
     int xpos = XPOSITION;
     for (int y = 0; y < 36; y++) {
@@ -199,11 +184,25 @@ void putDigitalClockExp(Colour colour, unsigned char * fontExp) {
 }
 
 void putDigitalColon(Colour colour) {
-    putDigitalClockExp(colour, digitalColon());
+    printDigitalClockExp(colour, digitalColon());
 }
 
 void putDigitalNumber(Colour colour, int number) {
-    putDigitalClockExp(colour, digitalClock_map(number));
+    printDigitalClockExp(colour, digitalClock_map(number));
+}
+
+void putTime(char * time, Colour colour) { // arreglar el caso 01:04:035
+    char c;
+    int i = 0;
+    while ((c=time[i++])) {
+        if (c == ':') {
+            putDigitalColon(colour);
+        } else {
+            putDigitalNumber(colour, (c - '0'));
+        }
+    }
+    XPOSITION = (video->XResolution/2) - 281;
+    YPOSITION = (video->YResolution/2) - 18;
 }
 
 // la insercion de texto se realiza en el la parte inferior de la pantalla, unicamente se puede insertar en una linea del ancho de la pantalla
@@ -266,6 +265,7 @@ int strlen(const char * str) {
 }
 
 
+
 //pasar de uint64_t a hexa y de ahi imprmir en pantalla
 void putHexa( uint64_t value, Colour colour){
   	printBase(value, 16, colour);
@@ -275,37 +275,4 @@ void printBase(uint64_t value, uint64_t base, Colour colour)
 {
     uintToBase(value, buffer, base);
     putStr(buffer, colour);
-}
-
-static uint64_t uintToBase(uint64_t value, char * buffer, uint64_t base)
-{
-	char *p = buffer;
-	char *p1, *p2;
-	uint64_t digits = 0;
-
-	//Calculate characters for each digit
-	do
-	{
-		uint64_t remainder = value % base;
-		*p++ = (remainder < 10) ? remainder + '0' : remainder + 'A' - 10;
-		digits++;
-	}
-	while (value /= base);
-
-	// Terminate string in buffer.
-	*p = 0;
-
-	//Reverse string in buffer.
-	p1 = buffer;
-	p2 = p - 1;
-	while (p1 < p2)
-	{
-		char tmp = *p1;
-		*p1 = *p2;
-		*p2 = tmp;
-		p1++;
-		p2--;
-	}
-
-	return digits;
 }
