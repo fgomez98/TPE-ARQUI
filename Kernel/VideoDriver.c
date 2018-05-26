@@ -13,6 +13,8 @@
 static char buffer[64] = { '0' }; // esto es para imprimir hexa
 #define Y_SPACE 2// espacio entre lineas
 #define X_SPACE 1// espacio entre caracteres
+#define TRUE 1
+#define FALSE 0
 
 typedef struct __attribute__((packed)) ModeInfoBlock {
         uint16_t ModeAttributes;
@@ -59,6 +61,7 @@ static int XPOSITION = X_SPACE;
 static int YPOSITION = Y_SPACE;
 static int XPOSITION2 = X_SPACE;
 static int YPOSITION2 = Y_SPACE;
+static int SHELL = TRUE;
 
 void putPixel(int x, int y, Colour colour) {
 	unsigned whereOnScreen = y*video->pitch + x*(video->BitsPerPixel/8);
@@ -140,7 +143,7 @@ void boundaryCorrector() {
     if (video->XResolution < XPOSITION || ((video->XResolution - XPOSITION) < 8)) {
         newLine();
     } else if ((video->YResolution -Y_SPACE - CHAR_HEIGHT) <= YPOSITION) {
-        YPOSITION -= CHAR_HEIGHT;
+        YPOSITION -= CHAR_HEIGHT -Y_SPACE;
         moveScreenUp();
     }
 }
@@ -219,23 +222,38 @@ void modeScreen() {
     XPOSITION = XPOSITION2;
     YPOSITION = YPOSITION2;
 }
+ 
+// modo shell
+void shellMode() {
+ clearScreen();
+ modeScreen();
+ modeComand();
+}
 
 // modo que permite mostrar el reloj en pantalla
 void modeDigitalClock() {
+    SHELL = FALSE;
     XPOSITION2 = X_SPACE;
     YPOSITION2 = Y_SPACE;
     clearScreen();
     XPOSITION = (video->XResolution/2) - 281;
     YPOSITION = (video->YResolution/2) - 18;
 }
-
+/*
 // modo shell
 void shellMode() {
     clearScreen();
-    modeScreen();
-    modeComand();
+    SHELL = TRUE;
+    XPOSITION = X_SPACE;
+    YPOSITION = Y_SPACE;
+    putStr("$>> ", white);
 }
 
+void newComand() {
+    newLine();
+    putStr("$>> ", white);
+}
+*/
 // borra la pantalla a partir de la poscion (x, y) dada
 void clear(int i, int j) {
     for (int y = j; y < video->YResolution; y++) {
@@ -263,8 +281,6 @@ int strlen(const char * str) {
     }
     return i;
 }
-
-
 
 //pasar de uint64_t a hexa y de ahi imprmir en pantalla
 void putHexa( uint64_t value, Colour colour){

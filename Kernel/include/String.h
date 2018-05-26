@@ -10,5 +10,6 @@
 #define String_h
 
 #include <stdio.h>
+char* strcpy(char* destination, const char* source);
 
 #endif /* String_h */

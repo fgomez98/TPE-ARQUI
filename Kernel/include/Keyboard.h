@@ -8,6 +8,9 @@
 #ifndef Keyboard_h
 #define Keyboard_h
 
+void addChar(char input);
 void Keyboard_Handler();
+char getchar();
+int isEmpty();
 
 #endif /* Keyboard_h */

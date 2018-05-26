@@ -1,11 +1,12 @@
 #include "VideoDriver.h"
 #include <stdint.h>
-#include <string.h>
+//#include <string.h>
 #include <lib.h>
 #include <moduleLoader.h>
 #include "idtLoader.h"
 #include "time.h"
-#include "String.h"
+//#include "String.h"
+#include "Keyboard.h"
 
 extern void probandoExcepcion();
 
@@ -64,23 +65,6 @@ void * initializeKernelBinary()
 
 	}
 }*/
-int countDigits(int num){
-    int dig = 1;
-    while((num/=10) != 0) dig++;
-    return dig;
-}
-
-char * intToStr(int num){
-    int dig = countDigits(num);
-    char numbers[4] = {0};
-    int count=0;
-    while(count!=dig){
-        numbers[dig-1-count++]=num%10+48;
-        num /= 10;
-    }
-    numbers[dig]=0;
-    return numbers;
-}
 
 int main() {
 	// Pone en la tabla IDT el numero de excepcion o interrupcion junto
@@ -91,12 +75,22 @@ int main() {
 	colour.Red = 255;
 	colour.Green = 255;
   	colour.Blue = 255;
-    putStr("hola", colour);
-		newLine();
+    //shellMode();
     putStr("234", colour);
     newLine();
-    modeDigitalClock();
-    showTime(); // esta en while(1) 
+    putStr("234", colour);
+    //modeDigitalClock();
+    //showTime(); // esta en while(1)
+    putChar('s', colour);
+    while (1) {
+        char getchar();
+        int isEmpty();
+        if (!isEmpty()) {
+            putChar(getchar(), colour);
+            newLine();
+        }
+    }
+    
 
 	return 0;
 }

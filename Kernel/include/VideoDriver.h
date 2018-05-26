@@ -9,7 +9,7 @@
 #ifndef VideoDriver_h
 #define VideoDriver_h
 
-#include <stdio.h>
+//#include <stdio.h>
 	typedef struct {
 		uint8_t Red;
 		uint8_t Green;
@@ -36,5 +36,6 @@
     void printBase(uint64_t value, uint64_t base, Colour colour);
 	void putHexa( uint64_t number, Colour colour);
 void putTime(char * time, Colour colour);
+void newComand(); // modificar para no tener que usar esta funcion
 
 #endif /* VideoDriver_h */
