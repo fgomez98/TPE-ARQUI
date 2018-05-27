@@ -74,24 +74,37 @@ void delay(int i) {
 }
 
 int main() {
+
+
 	// Pone en la tabla IDT el numero de excepcion o interrupcion junto
 	//con la direccion de la funcion que la atiende
 	load_idt();
-	probandoExcepcion();
+//	__asm__ ("int $0x00");
+//	probandoExcepcion();
 	Colour colour;
 	colour.Red = 255;
 	colour.Green = 255;
   	colour.Blue = 255;
-    //shellMode();
-    putStr("234", colour);
+
+  putStr("234", colour);
+
+//entrando a userland
+((EntryPoint)sampleCodeModuleAddress)();
+
+putStr("no entro al userland", colour);
+
+
+
+  /*  putStr("234", colour);
     newLine();
+<<<<<<< HEAD
     putStr("234", colour);
     delay(10000);
-    modeScreen();
+=======
+    modeDigitalClock();
+    showTime(); // esta en while(1)
     putStr("234", colour);
-    newLine();
-    putStr("234", colour);
-    delay(10000);
+>>>>>>> master
     //modeDigitalClock();
     //showTime(); // esta en while(1)
     putChar('s', colour);
@@ -106,18 +119,11 @@ int main() {
             putChar(input, colour);
         }
     }
-    
+*/
+
+
+
+
 
 	return 0;
-}
-
-void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4){
-	Colour colour;
-	colour.Red = 255;
-	colour.Green = 255;
-		colour.Blue = 255;
-	switch(arg1) {
-		case 0: putStr("probando syscall handler", colour);; break;
-		case 1: ; break;
-	}
 }
