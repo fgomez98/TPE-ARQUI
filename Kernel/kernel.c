@@ -25,6 +25,7 @@ static void * const sampleDataModuleAddress = (void*)0x500000;
 
 
 
+
 typedef int (*EntryPoint)();
 
 void clearBSS(void * bssAddress, uint64_t bssSize) {
@@ -81,7 +82,7 @@ int main() {
 
     // Pone en la tabla IDT el numero de excepcion o interrupcion junto
     //con la direccion de la funcion que la atiende
-    load_idt();
+    //load_idt();
 
 
     //	probandoExcepcion();
@@ -95,7 +96,8 @@ int main() {
 
 		uint64_t a = 3;
 		putHexa(a, colour);
-		 a = (uint64_t)((EntryPoint)sampleCodeModuleAddress)();
+		newLine();
+		 a = ((EntryPoint)sampleCodeModuleAddress)();
 
     putHexa(a, colour);
 
