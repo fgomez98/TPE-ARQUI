@@ -13,11 +13,10 @@ static int var2 = 0;*/
 
 
 int main() {
-	__asm__ ("int $0x00");// probando para ver si entra a userland
 
 	char command[MAXLENGTH];//AVERIGUAR EL TOPE
 	int running = 1;
-	while (running){
+//	while (running){
 
 
 			//printf(">>>");
@@ -47,5 +46,7 @@ int main() {
 
 */
 
-	}
+//	}
+
+	return 2;
 }

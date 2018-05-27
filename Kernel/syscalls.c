@@ -6,9 +6,9 @@
 #define STDOUT 1
 #define CLEAR 0
 
-void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4);
+void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5);
 
-void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4){
+void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5){
 	Colour colour;
 	colour.Red = 255;
 	colour.Green = 255;
@@ -38,4 +38,8 @@ void write(uint64_t fileDes, uint64_t toPrint, uint64_t aux1){
       putStr(toPrint, colour);
     break;
   }
+}
+
+void read(uint64_t fileDes, uint64_t buffer, uint64_t size, uint64_t aux1 ){
+
 }

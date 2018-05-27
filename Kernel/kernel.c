@@ -53,6 +53,9 @@ void * initializeKernelBinary()
 
 	clearBSS(&bss, &endOfKernel - &bss);
 
+
+
+
 	return getStackBase();
 }
 
@@ -75,26 +78,31 @@ void delay(int i) {
 
 int main() {
 
-    
+
     // Pone en la tabla IDT el numero de excepcion o interrupcion junto
     //con la direccion de la funcion que la atiende
     load_idt();
-    //	__asm__ ("int $0x00");
+
+
     //	probandoExcepcion();
     Colour colour;
     colour.Red = 255;
     colour.Green = 255;
     colour.Blue = 255;
-    
-    putStr("234", colour);
-    
-    //entrando a userland
-    ((EntryPoint)sampleCodeModuleAddress)();
-    
-    putStr("no entro al userland", colour);
-    
-    
-    
+
+  //  putStr("234", colour);
+
+
+		uint64_t a = 3;
+		putHexa(a, colour);
+		 a = (uint64_t)((EntryPoint)sampleCodeModuleAddress)();
+
+    putHexa(a, colour);
+
+  //  putStr("no entro al userland", colour);
+
+
+
     /*  putStr("234", colour);
      newLine();
      modeDigitalClock();
@@ -112,7 +120,7 @@ int main() {
      }
      }
      */
-    
+
 
 
 	return 0;
