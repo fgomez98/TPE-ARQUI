@@ -11,12 +11,17 @@ static int var2 = 0;*/
 
 
 
+
 int main() {
+	__asm__ ("int $0x00");// probando para ver si entra a userland
+
 	char command[MAXLENGTH];//AVERIGUAR EL TOPE
-	int running =1;
+	int running = 1;
 	while (running){
-			printf(">>>");
-			scanf("%s",command); //pone en command lo que el usuario ingreso hasta apretar enter
+
+
+			//printf(">>>");
+		/*	scanf("%s",command); //pone en command lo que el usuario ingreso hasta apretar enter
 
 			if(strcmp("ayuda", command) == 0){
 					help();
@@ -40,7 +45,7 @@ int main() {
 				printf("Comando no encontrado");
 			}
 
-
+*/
 
 	}
 }
