@@ -7,7 +7,8 @@
 #include "time.h"
 //#include "String.h"
 #include "Keyboard.h"
-
+#include "KeyboardDriver.h"
+#include "ScanCodes.h"
 extern void probandoExcepcion();
 
 extern uint8_t text;
@@ -91,15 +92,18 @@ int main() {
     newLine();
     putStr("234", colour);
     delay(10000);
-    modeDigitalClock();
-    showTime(); // esta en while(1)
+    //modeDigitalClock();
+    //showTime(); // esta en while(1)
     putChar('s', colour);
+    /* while (1) {
+        if (keyPressed()) {
+            putChar(getAsciiCode(getKey()), colour);
+        }
+    }*/
     while (1) {
-        char getchar();
-        int isEmpty();
-        if (!isEmpty()) {
-            putChar(getchar(), colour);
-            newLine();
+        char input  = getKeyInput();
+        if (input != 0) {
+            putChar(input, colour);
         }
     }
     
