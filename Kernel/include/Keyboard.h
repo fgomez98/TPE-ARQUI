@@ -8,9 +8,7 @@
 #ifndef Keyboard_h
 #define Keyboard_h
 
-void addChar(char input);
 void Keyboard_Handler();
-
 /* retorna el input del teclado si es que hubo alguna 0 si no */
 char getKeyInput();
 

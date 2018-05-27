@@ -64,7 +64,7 @@ void Keyboard_Handler() { // una vez apretada una tecla se soltara una interrupc
     }
 }
 
-char getKeyInput() { // retorna 0 si no hay nada para leer
+char getKeyInput() { // retorna el input del teclado si es que hubo alguna 0 si no 
     if (size <= 0) {
         return 0;
     }

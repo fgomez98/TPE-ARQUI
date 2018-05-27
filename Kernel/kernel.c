@@ -75,54 +75,44 @@ void delay(int i) {
 
 int main() {
 
-
-	// Pone en la tabla IDT el numero de excepcion o interrupcion junto
-	//con la direccion de la funcion que la atiende
-	load_idt();
-//	__asm__ ("int $0x00");
-//	probandoExcepcion();
-	Colour colour;
-	colour.Red = 255;
-	colour.Green = 255;
-  	colour.Blue = 255;
-
-  putStr("234", colour);
-
-//entrando a userland
-((EntryPoint)sampleCodeModuleAddress)();
-
-putStr("no entro al userland", colour);
-
-
-
-  /*  putStr("234", colour);
-    newLine();
-<<<<<<< HEAD
+    
+    // Pone en la tabla IDT el numero de excepcion o interrupcion junto
+    //con la direccion de la funcion que la atiende
+    load_idt();
+    //	__asm__ ("int $0x00");
+    //	probandoExcepcion();
+    Colour colour;
+    colour.Red = 255;
+    colour.Green = 255;
+    colour.Blue = 255;
+    
     putStr("234", colour);
-    delay(10000);
-=======
-    modeDigitalClock();
-    showTime(); // esta en while(1)
-    putStr("234", colour);
->>>>>>> master
-    //modeDigitalClock();
-    //showTime(); // esta en while(1)
-    putChar('s', colour);
-    /* while (1) {
-        if (keyPressed()) {
-            putChar(getAsciiCode(getKey()), colour);
-        }
-    }*/
-    while (1) {
-        char input  = getKeyInput();
-        if (input != 0) {
-            putChar(input, colour);
-        }
-    }
-*/
-
-
-
+    
+    //entrando a userland
+    ((EntryPoint)sampleCodeModuleAddress)();
+    
+    putStr("no entro al userland", colour);
+    
+    
+    
+    /*  putStr("234", colour);
+     newLine();
+     modeDigitalClock();
+     showTime(); // esta en while(1)
+     putStr("234", colour);
+     //modeDigitalClock();
+     //showTime(); // esta en while(1)
+     putChar('s', colour);
+     while (1) {
+     char getchar();
+     int isEmpty();
+     if (!isEmpty()) {
+     putChar(getchar(), colour);
+     newLine();
+     }
+     }
+     */
+    
 
 
 	return 0;
