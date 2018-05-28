@@ -82,7 +82,7 @@ int main() {
 
     // Pone en la tabla IDT el numero de excepcion o interrupcion junto
     //con la direccion de la funcion que la atiende
-    //load_idt();
+    load_idt();
 
 
     //	probandoExcepcion();

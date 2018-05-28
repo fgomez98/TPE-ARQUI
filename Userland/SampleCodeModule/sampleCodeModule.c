@@ -19,7 +19,7 @@ int main() {
 //	while (running){
 
 
-			//printf(">>>");
+			printf("$>");
 		/*	scanf("%s",command); //pone en command lo que el usuario ingreso hasta apretar enter
 
 			if(strcmp("ayuda", command) == 0){

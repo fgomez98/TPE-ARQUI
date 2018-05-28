@@ -6,5 +6,6 @@ void printf(char* fmt, ...);
 void scanf(char* fmt, char* buffer);
 int strcmp(char string1[], char string2[] );
 char getChar();
+char *convert(unsigned int num, int base) ;
 
 #endif
