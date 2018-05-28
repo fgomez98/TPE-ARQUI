@@ -31,7 +31,8 @@ int main() {
 
 
 	 printf("$>");
-	 
+	 showDigitalHour();
+
 		/*	scanf("%s",command); //pone en command lo que el usuario ingreso hasta apretar enter
 
 			if(strcmp("ayuda", command) == 0){

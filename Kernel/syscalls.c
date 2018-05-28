@@ -7,6 +7,7 @@
 #define STDOUT 1
 #define STDIN 0
 #define CLEAR 0
+#define CLOCK 2
 void probando(uint64_t* toPrint, uint64_t size,  Colour colour);
 
 void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
@@ -51,14 +52,10 @@ void write(uint64_t fileDes, uint64_t toPrint, uint64_t size){
 				 break;
 			}
 
-			//probando((uint64_t*)toPrint , size, colour);
-
-
-
-		///	putStr("entro", colour);
-
-
     	break;
+			case CLOCK:
+				showTime();
+			break;
   }
 }
 
