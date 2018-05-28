@@ -113,11 +113,13 @@ void putStrAux(char * str, Colour colour) {
 
 // imprime un string en pantalla
 void putStr(char * str, Colour colour) { // lee hasta el cero, si no lo tiene como hago para que corte en algun momento (excepcion)
+    
     char buff[24] = {0};
     char c;
     int i = 0;
     int j = 0;
     while ((c=str[i++])) {
+
         buff[j++] = c;
         if (c == ' ') {
             buff[j] = 0;
@@ -161,7 +163,7 @@ void moveScreenUp() {
             putPixel(x, y , black);
         }
     }
-    
+
 }
 
 // impreime la hora en formato hh:mm:ss el paramtero es un string que respeta el formato especificado

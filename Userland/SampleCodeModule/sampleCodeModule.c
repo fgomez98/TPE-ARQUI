@@ -5,12 +5,23 @@ char * v = (char*)0xB8000 + 79 * 2;
 static int var1 = 0;
 static int var2 = 0;*/
 
+
+#include <stdint.h>
+#include <stdarg.h>
+#include"stdio.h"
+
+#define WRITE 1
+#define READ 0
+#define STDOUT 1
+#define STDIN 0
+#define CLEAR 0
+
+extern void systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
+
+
 #include "commands.h"
-//include "lib.h"
-
-
-
-
+//#include "lib.h"
+void printf(char* fmt, ...);
 
 int main() {
 
@@ -19,7 +30,8 @@ int main() {
 //	while (running){
 
 
-			printf("$>");
+	 printf("$>");
+	 
 		/*	scanf("%s",command); //pone en command lo que el usuario ingreso hasta apretar enter
 
 			if(strcmp("ayuda", command) == 0){

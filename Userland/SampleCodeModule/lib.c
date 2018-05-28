@@ -10,13 +10,18 @@
 
 extern void systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
 
-void printf(char* fmt, ...){
+/*void printf(char* fmt, ...){
 	//probando hasta que hagan printf
-  char m[]= "$>";
-  systemCall(WRITE, STDOUT,  m, 0,0, 0);
+  char m[] ="hola";
+  char f[] ="chau";
+  char *e = m;
+
+  //systemCall(WRITE, STDOUT,  m, 2,0, 0);
+  //systemCall(WRITE, STDOUT,  f, 2,0, 0);
+ return;
 	//	write(STDOUT, 0, 0,0, 0);
 }
-
+*/
 
 /*
 void printf(char* format, ...){
