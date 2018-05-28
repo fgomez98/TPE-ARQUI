@@ -6,7 +6,7 @@ static int var1 = 0;
 static int var2 = 0;*/
 
 #include "commands.h"
-#include "lib.h"
+//include "lib.h"
 
 
 
@@ -14,8 +14,8 @@ static int var2 = 0;*/
 
 int main() {
 
-	char command[MAXLENGTH];//AVERIGUAR EL TOPE
-	int running = 1;
+	//char command[MAXLENGTH];//AVERIGUAR EL TOPE
+	//int running = 1;
 //	while (running){
 
 
