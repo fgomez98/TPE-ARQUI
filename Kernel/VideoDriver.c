@@ -57,9 +57,8 @@ Colour white = {255, 255, 255};
 static Vesa * video = (Vesa*)0x5C00;
 static int XPOSITION = X_SPACE;
 static int YPOSITION = Y_SPACE;
-static int XPOSITION2 = X_SPACE;
-static int YPOSITION2 = Y_SPACE;
-
+//static int XPOSITION2 = X_SPACE;
+//static int YPOSITION2 = Y_SPACE;
 
 void putPixel(int x, int y, Colour colour) {
 	unsigned whereOnScreen = y*video->pitch + x*(video->BitsPerPixel/8);
@@ -70,6 +69,9 @@ void putPixel(int x, int y, Colour colour) {
 }
 
 void printChar(char c, Colour colour) {
+    if (c == 0) {
+        return;
+    }
     char font;
     char *  font_char = pixel_map(c);
     for (int y = 0; y < 16; y++) {
@@ -96,6 +98,18 @@ void putChar(char c, Colour colour) {
     boundaryCorrector();
     printChar(c, colour);
     XPOSITION += CHAR_WIDTH + X_SPACE;
+    boundaryCorrector();
+}
+
+void deleteChar() {
+    XPOSITION -= (CHAR_WIDTH + X_SPACE);
+    boundaryCorrector();
+    for (int y = 0; y < 16; y++) {
+        for (int x = 0; x < 8; x++) {
+            putPixel(x + XPOSITION, y + YPOSITION, black);
+        }
+    }
+    //printChar(' ', black);
     boundaryCorrector();
 }
 
@@ -142,11 +156,20 @@ void newLine() {
 }
 
 void boundaryCorrector() {
-    if (video->XResolution < XPOSITION || ((video->XResolution - XPOSITION) < 8)) {
+    if (video->XResolution < XPOSITION || ((video->XResolution - XPOSITION) < (8+X_SPACE))) {
         newLine();
     } else if ((video->YResolution -Y_SPACE - CHAR_HEIGHT) <= YPOSITION) {
-        YPOSITION -= CHAR_HEIGHT -Y_SPACE;
+        YPOSITION -= (CHAR_HEIGHT + Y_SPACE);
         moveScreenUp();
+    } else if (YPOSITION < Y_SPACE) {
+        YPOSITION = Y_SPACE;
+    } else if (XPOSITION < X_SPACE) {
+        if (YPOSITION > (Y_SPACE + CHAR_HEIGHT)) {
+            YPOSITION -= (Y_SPACE + CHAR_HEIGHT);
+            XPOSITION = video->XResolution - X_SPACE - CHAR_WIDTH;
+        } else {
+            XPOSITION = X_SPACE;
+        }
     }
 }
 
@@ -156,9 +179,9 @@ void moveScreenUp() {
     char * source = (char *) (video->PhysBasePtr + whereOnScreen);
     unsigned whereOnScreen2 = (Y_SPACE)*(video->pitch) + X_SPACE*(video->BitsPerPixel/8);
     char * dest = (char *) (video->PhysBasePtr + whereOnScreen2);
-    int size = ((video->YResolution)-CHAR_HEIGHT-Y_SPACE)*(video->XResolution);
+    int size = (video->YResolution)*(video->XResolution)*3;
     memCpy(dest, source, size);
-    for (int y = video->YResolution - (2*(CHAR_HEIGHT+Y_SPACE)) ; y < video->YResolution -(CHAR_HEIGHT+(2*Y_SPACE)); y ++) {
+    for (int y = YPOSITION ; y < video->YResolution; y ++) { //Y_SPACE
         for (int x = X_SPACE; x < video->XResolution-X_SPACE; x++) {
             putPixel(x, y , black);
         }

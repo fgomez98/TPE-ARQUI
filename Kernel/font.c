@@ -3482,7 +3482,7 @@ unsigned char __font_bitmap__[] = {
 
 unsigned char digitalClockNumbers[] = {
     //8*8 de ancho = 64
-    //9*4+ 4 de alto = 40
+    //9*4 de alto = 36
     XXXXXXXX,XXXXXXXX,XXXXXXXX,XXXXXXXX,XXXXXXXX,XXXXXXXX,XXXXXXXX,XXXXXXXX,
     XXXXXXXX,XXXXXXXX,XXXXXXXX,XXXXXXXX,XXXXXXXX,XXXXXXXX,XXXXXXXX,XXXXXXXX,
     XXXXXXXX,XXXXXXXX,XXXXXXXX,XXXXXXXX,XXXXXXXX,XXXXXXXX,XXXXXXXX,XXXXXXXX,
@@ -3941,10 +3941,6 @@ unsigned char * pixel_map(int c) {
 
 unsigned char * digitalClock_map(int number) {
     return digitalClockNumbers + BIG_NUMBER_HEIGHT * 8 * number;
-}
-
-unsigned char * digitalClock_Test() {
-    return digitalClockNumbers;
 }
 
 unsigned char * digitalColon() {

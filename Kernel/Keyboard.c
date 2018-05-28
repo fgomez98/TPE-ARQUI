@@ -17,10 +17,6 @@ static int CNTRL_ON = FALSE;
 void Keyboard_Handler() { // una vez apretada una tecla se soltara una interrupcion y luego la idt llama a esta funcion
     unsigned int scan = getKey();
     char input;
-    Colour colour;
-    colour.Red = 255;
-    colour.Green = 255;
-    colour.Blue = 255;
     if (scan & 0x80) { // si el primer bit esta en 1 entnces una tecla fue soltada
         switch (scan) {
             case RSHIFT_R: // shift
@@ -47,6 +43,9 @@ void Keyboard_Handler() { // una vez apretada una tecla se soltara una interrupc
             case CTRL: //  cntrl
                 CNTRL_ON = TRUE;
                 break;
+            //case BACKSPACE:
+              //  addToBuffer(-1);
+               // break;
         }
         if (SHIFT_ON) {
             input = getAsciiShiftCode(scan);
@@ -64,7 +63,7 @@ void Keyboard_Handler() { // una vez apretada una tecla se soltara una interrupc
     }
 }
 
-char getKeyInput() { // retorna el input del teclado si es que hubo alguna 0 si no 
+char getKeyInput() { // retorna el input del teclado si es que hubo alguna 0 si no, -1 si el input es un backspace
     if (size <= 0) {
         return 0;
     }

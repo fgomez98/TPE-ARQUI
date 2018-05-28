@@ -3,9 +3,17 @@
 #include "String.h"
 #include "lib.h"
 #include "VideoDriver.h"
+#include "Keyboard.h"
+#include "Beep.h"
+#define COLOUR_SIZE 6
 static unsigned long ticks = 0;
-static Colour white = {255, 255, 255};
-
+static Colour colour1 = {255, 255, 255};
+static Colour colour2 = {180, 40, 18};
+static Colour colour3 = {200, 156, 12};
+static Colour colour4 = {233, 80, 167};
+static Colour colour5 = {46, 230, 210};
+static Colour colour6 = {200, 130, 40};
+static int colourIndex = 0;
 void timer_handler() {
 	ticks++;
 }
@@ -41,11 +49,24 @@ char * getTime() {
 }
 
 void showTime() {
+    Colour myColours[5] = {colour1, colour2, colour3, colour4, colour5};
     modeDigitalClock();
     char * time;
+    char key;
     while (1) {
+        key = getKeyInput();
+        switch (key) {
+            case 'c': //hotkey
+                colourIndex = (colourIndex+1)%COLOUR_SIZE;
+                void beep();
+                break;
+            case 'q': // beep
+                modeScreen();
+                return;
+                break;
+        }
         time = getTime();
-        putTime(time, white);
+        putTime(time, myColours[colourIndex]);
     }
 }
 

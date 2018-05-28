@@ -36,6 +36,7 @@
     void printBase(uint64_t value, uint64_t base, Colour colour);
 	void putHexa( uint64_t number, Colour colour);
 void putTime(char * time, Colour colour);
+void deleteChar();
 void newComand(); // modificar para no tener que usar esta funcion
 
 #endif /* VideoDriver_h */

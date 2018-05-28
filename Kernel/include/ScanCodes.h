@@ -47,6 +47,7 @@
 #define F12_R		 (char)0xD8
 #define TAB			 (char)0x0F
 #define TAB_R		 (char)0x8F
+#define BACKSPACE    (char)0x0E
 
 char getAsciiCode(int scan);
 char getAsciiShiftCode(int scan);
