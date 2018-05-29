@@ -94,11 +94,10 @@ int main() {
   //  putStr("234", colour);
 
 
-		uint64_t a = 3;
-		putHexa(a, colour);
-		newLine();
-		 a = ((EntryPoint)sampleCodeModuleAddress)();
+		uint64_t a;
 
+		 a = ((EntryPoint)sampleCodeModuleAddress)();
+		 newLine();
     putHexa(a, colour);
 
   //  putStr("no entro al userland", colour);

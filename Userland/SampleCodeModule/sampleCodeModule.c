@@ -24,43 +24,43 @@ extern void systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg
 void printf(char* fmt, ...);
 
 int main() {
+	printf("Welcome");
+	help();
 
 	static char command[MAXLENGTH];//AVERIGUAR EL TOPE
-	//int running = 1;
-//	while (running){
-
+	int running = 1;
+	while (running){
 
 	 printf("$>");
 	 scanAndPrint(command);
-	 //showDigitalHour();
 
-		/*	scanf("%s",command); //pone en command lo que el usuario ingreso hasta apretar enter
-
-			if(strcmp("ayuda", command) == 0){
+			if(strcmp("help", command) == 0){
 					help();
 			}
-			else if(strcmp("hora", command) == 0){
-				showHour();
-			}
-			else if(strcmp("horaDigital", command) == 0){
+			else if(strcmp("digitalTime", command) == 0){
 				showDigitalHour();
 			}
-			else if(strcmp("divisionPor0exc", command) == 0){
+			else if(strcmp("digitalTime", command) == 0){
+				showTime();
+			}
+			else if(strcmp("clean", command)==0){
+				cleanScreen();
+			}
+			else if(strcmp("div0exc", command) == 0){
 				show0exc();
 			}
-			else if(strcmp("", command) == 0){
+			else if(strcmp("opcodeExc", command) == 0){
 				showOpcodeExc();
 			}
-			else if(strcmp("salir", command) == 0){
+			else if(strcmp("exit", command) == 0){
 				running = 0;
 			}
 			else{
-				printf("Comando no encontrado");
+				printf("Unknown command, type help");
 			}
 
-*/
-
-//	}
+	}
+	printf("See you soon!");
 
 	return 2;
 }
