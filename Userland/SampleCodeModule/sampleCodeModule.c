@@ -29,9 +29,13 @@ int main() {
 	//int running = 1;
 //	while (running){
 
-
+	printf("TEngo %d argumentos", 1);
+	printf("holis");
 	 printf("$>");
+<<<<<<< Updated upstream
 	 scanAndPrint(command);
+=======
+>>>>>>> Stashed changes
 	 //showDigitalHour();
 
 		/*	scanf("%s",command); //pone en command lo que el usuario ingreso hasta apretar enter

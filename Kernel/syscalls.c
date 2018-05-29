@@ -8,6 +8,7 @@
 #define STDIN 0
 #define CLEAR 0
 #define CLOCK 2
+
 void probando(uint64_t* toPrint, uint64_t size,  Colour colour);
 
 void writeM(uint64_t fileDes, uint64_t toPrint, uint64_t size);
