@@ -25,13 +25,14 @@ void printf(char* fmt, ...);
 
 int main() {
 
-	//char command[MAXLENGTH];//AVERIGUAR EL TOPE
+	static char command[MAXLENGTH];//AVERIGUAR EL TOPE
 	//int running = 1;
 //	while (running){
 
 
 	 printf("$>");
-	 showDigitalHour();
+	 scanAndPrint(command);
+	 //showDigitalHour();
 
 		/*	scanf("%s",command); //pone en command lo que el usuario ingreso hasta apretar enter
 

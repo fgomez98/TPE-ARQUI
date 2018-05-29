@@ -5,4 +5,9 @@
 void printf(char* fmt, ...);
 
 
+void scanAndPrint(char* buffer);
+
+char getChar();
+
+
 #endif

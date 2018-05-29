@@ -10,6 +10,9 @@
 #define CLOCK 2
 void probando(uint64_t* toPrint, uint64_t size,  Colour colour);
 
+void writeM(uint64_t fileDes, uint64_t toPrint, uint64_t size);
+void readM(uint64_t fileDes, uint64_t buffer, uint64_t size, uint64_t aux1 );
+
 void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
 
 void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6){
@@ -21,16 +24,19 @@ void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4,
 	char a = 'a';
 
 	switch(arg1) {
-    case READ: ; break;
+    case READ:
+			readM(arg2, arg3, arg4, arg5);
+			 break;
 		case WRITE:
-      write(arg2, arg3, arg4);
+      writeM(arg2, arg3, arg4);
 	 	break;
 
 	}
+	return 0;
 }
 
 
-void write(uint64_t fileDes, uint64_t toPrint, uint64_t size){
+void writeM(uint64_t fileDes, uint64_t toPrint, uint64_t size){
   Colour colour;
   colour.Red = 255;
   colour.Green = 255;
@@ -71,7 +77,12 @@ void probando(uint64_t* toPrint, uint64_t size,  Colour colour){
 
 
 
-void read(uint64_t fileDes, uint64_t buffer, uint64_t size, uint64_t aux1 ){
-	char c =  getKeyInput();
-	buffer = &c;
+void readM(uint64_t fileDes, uint64_t buffer, uint64_t size, uint64_t aux1 ){
+	Colour colour;
+  colour.Red = 255;
+  colour.Green = 255;
+  colour.Blue = 255;
+
+	char * walter =(char *) buffer;
+	*(walter) =  getKeyInput();
 }
