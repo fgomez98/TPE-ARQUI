@@ -28,8 +28,7 @@ static void zero_division() {
 	colour.Green = 255;
 	colour.Blue = 255;
 	putStr("ERROR: DIVISION POR 0", colour);
-//imprime  instruction pointer y registros en el momento del error.
-
+	return;
 }
 
 static void invalid_opcode(){

@@ -16,6 +16,7 @@ static int var2 = 0;*/
 #define STDIN 0
 #define CLEAR 0
 
+
 extern void systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
 
 
@@ -46,8 +47,8 @@ int main() {
 			else if(strcmp("clean", command)==0){
 				cleanScreen();
 			}
-			else if(strcmp("div0exc", command) == 0){
-				show0exc();
+			else if(strcmp("div", command) == 0){
+				divi();
 			}
 			else if(strcmp("opcodeExc", command) == 0){
 				showOpcodeExc();

@@ -28,7 +28,7 @@ int seconds_elapsed() {
 
 char * getTime() {
     static char buf[8] = {0};
-    uintToBase(abs((getHour()-3)%24), buf, 10); 
+    uintToBase(abs((getHour()-3)%24), buf, 10);
     if (buf[1] == 0) {
         buf[1] = buf[0];
         buf[0] = '0';
@@ -70,8 +70,16 @@ void showTime() {
     }
 }
 
+void updateCoulourAndBeep(){
+	colourIndex = (colourIndex+1)%COLOUR_SIZE;
+	void beep();
+}
 
 
+void displayTime(){
+	char * time;
+	Colour myColours[5] = {colour1, colour2, colour3, colour4, colour5};
 
-
-
+	time = getTime();
+	putTime(time, myColours[colourIndex]);
+}
