@@ -1,7 +1,5 @@
-#include <stdint.h>
-#include <stdarg.h>
-#include"stdio.h"
-
+#include "stdio.h"
+#include "lib.h"
 #define WRITE 1
 #define READ 0
 #define STDOUT 1
@@ -11,30 +9,7 @@
 
 extern unsigned int systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5);
 
-void printf(char* fmt, ...){
-	//probando hasta que hagan printf
-//  char m[] ="hola";
-  //char f[] ="chau";
-
-//  systemCall(WRITE, STDOUT,  m, 2,0, 0);
-  systemCall(WRITE, STDOUT,  fmt, 2,0);
- return;
-	//	write(STDOUT, 0, 0,0, 0);
-}
-/*
-while (1) {
-        char c = getKeyInput();
-        if (c == '\b') {
-            deleteChar();
-        } else if (c == '\n') {
-            newLine();
-        }else if (c > 0 && c < 127) {
-            putChar(c, colour);
-        }
-    }*/
-
-
-void scanAndPrint(char* buffer){
+void scanAndPrint(char* buffer) {
 
   char k;
   int i=0;
@@ -65,7 +40,13 @@ void scanAndPrint(char* buffer){
 */
 }
 
+void putChar(char c) {
+    systemCall(WRITE, STDOUT, c,1,0);
+}
 
+void putString(char * str) {
+    systemCall(WRITE, STDOUT, str,0,0);
+}
 char getChar(){
   char c=0;
 	while(1) {
@@ -77,17 +58,55 @@ char getChar(){
   return 0;
 }
 
-int strcmp(char string1[], char string2[] ){
-    for (int i = 0; ; i++)
-    {
-        if (string1[i] != string2[i])
-        {
-            return string1[i] < string2[i] ? -1 : 1;
+void printf(char* fmt, ...) {
+    
+    va_list args;
+    va_start(args, fmt);
+    
+    int i;
+    char* s;
+    char printable[64];
+    
+    while(*fmt){
+        if(*fmt != '%'){
+            putChar(*fmt);
+        }else{
+            fmt++;
+            switch(*fmt){
+                case 'c':
+                    i = (char) va_arg(args, int);
+                    putChar((char)i);
+                    break;
+                case 'd':
+                    i = va_arg(args, int);
+                    uintToBase(i, printable, 10);
+                    putString(printable);
+                    break;
+                case 's':
+                    s = (char*) va_arg(args, char*);
+                    putString(s);
+                    break;
+            }
         }
-
-        if (string1[i] == '\0')
-        {
-            return 0;
-        }
+        fmt++;
     }
+    va_end(args);
+}
+
+char *convert(int num, int base) {
+    static char Representation[]= "0123456789ABCDEF";
+    static char buffer[50];
+    char *ptr;
+    
+    ptr = &buffer[49];
+    *ptr = '\0';
+    
+    do
+    {
+        *--ptr = Representation[num%base];
+        num /= base;
+    }while(num != 0);
+    
+    return(ptr);
+    
 }

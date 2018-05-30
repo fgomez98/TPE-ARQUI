@@ -20,13 +20,8 @@ void Keyboard_Handler() { // una vez apretada una tecla se soltara una interrupc
     //Colour colour = {255, 255, 255};
     //putStr("maite capa", colour);
     if (scan & 0x80) { // si el primer bit esta en 1 entnces una tecla fue soltada
-        switch (scan) {
-            case RSHIFT_R: // shift
-                SHIFT_ON = FALSE;
-                break;
-            case LSHIFT_R: // shift
-                SHIFT_ON = FALSE;
-                break;
+        if (scan == 0xAA || scan == 0xB6) { // shift
+            SHIFT_ON = FALSE;
         }
     } else { // se apreto una tecla, si alguna ya fue apretada antes y se mantiene pulasada esta enviara multiples interrupciones, si fuese una tecla especial esta estaria seteada en TRUE y al apretar luego una tecla accedemos a su respectivo mapa
         switch (scan) {

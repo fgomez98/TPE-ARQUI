@@ -91,17 +91,6 @@ int main() {
     colour.Green = 255;
     colour.Blue = 255;
 
-    while (1) {
-        char c = getKeyInput();
-        if (c == '\b') {
-            deleteChar();
-        } else if (c == '\n') {
-            newLine();
-        }else if (c > 0 && c < 127) {
-            putChar(c, colour);
-        }
-    }
-
 
 		uint64_t a;
 
