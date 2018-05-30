@@ -28,6 +28,8 @@ int main() {
 	printf("Welcome");
 	help();
 
+
+
 	static char command[MAXLENGTH];//AVERIGUAR EL TOPE
 	int running = 1;
 	while (running){
@@ -44,7 +46,7 @@ int main() {
 			else if(strcmp("digitalTime", command) == 0){
 				showTime();
 			}
-			else if(strcmp("clean", command)==0){
+			else if(strcmp("clear", command)==0){
 				cleanScreen();
 			}
 			else if(strcmp("div", command) == 0){

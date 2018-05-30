@@ -5,10 +5,10 @@
 
 #define CLOCK 2
 #define WRITE 1
-#define DIVIDE 3
 #define STDOUT 1
 #define READ 0
 #define STDIN 0
+#define CLEAR 0
 
 
 
@@ -22,7 +22,7 @@ void help(){
 }
 
 void cleanScreen(){
-
+  systemCall(WRITE, CLEAR, 0,0, 0);
 }
 
 void showTime(){
@@ -74,20 +74,13 @@ void showDigitalHour(){
 
 }
 
+int div100(int n) {
+  return 100 / n;
+}
+
+
 void divi(){
-
-  int numerator=3;
-  int denominator=0;
-  int rta;
-
-  //printf("numerator/denominator");
-  //CA VA EL SCANF Q HAY QUE HACER!!!!
-  //preguntar como hacer scanf y mientras ir imprimiendo
-  //scanf("%d/%d", &numerator, &denominator);
-
-  systemCall(DIVIDE, &rta,numerator,denominator, 0);
-  systemCall(WRITE, STDOUT, &rta,1,0);
-
+  div100(0);
 }
 
 

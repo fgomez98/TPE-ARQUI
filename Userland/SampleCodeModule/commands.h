@@ -8,5 +8,6 @@ void showOpcodeExc();
 void cleanScreen();
 void showTime();
 void divi();
+int div100(int n);
 
 #endif

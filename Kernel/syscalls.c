@@ -9,14 +9,14 @@
 #define STDIN 0
 #define CLEAR 0
 #define CLOCK 2
-#define DIVIDE 3
-void probando(uint64_t* toPrint, uint64_t size,  Colour colour);
+
+
 
 void writeM(uint64_t fileDes, uint64_t toPrint, uint64_t size,  uint64_t aux);
 void readM(uint64_t fileDes, uint64_t buffer, uint64_t size, uint64_t aux );
 
 void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5);
-int divide(uint64_t ans, uint64_t a, uint64_t b);
+
 
 void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5){
 
@@ -36,11 +36,6 @@ void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4,
 		case WRITE:
       writeM(arg2, arg3, arg4, arg5);
 	 	break;
-		case DIVIDE:
-
-		 	divide(arg2, arg3, arg4);
-
-		break;
 
 		case CLOCK:
 			switch (arg2){
@@ -55,7 +50,6 @@ void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4,
 				break;
 				case 3:
 				displayTime();
-
 				break;
 			}
 
@@ -65,16 +59,6 @@ void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4,
 	return 0;
 }
 
-
-//METER ESTA EN OTRO .C
-int divide(uint64_t ans, uint64_t a, uint64_t b){
-
-	int * rta =(int *) ans;
-	int res = a/b;
-	*(rta) = res;
-
-	return res;
-}
 
 
 
