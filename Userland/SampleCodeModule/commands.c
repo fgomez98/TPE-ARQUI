@@ -25,35 +25,8 @@ void cleanScreen(){
   systemCall(WRITE, CLEAR, 0,0, 0);
 }
 
-void showTime(){
-
-}
-
-/*
-void showTime() {
-    Colour myColours[5] = {colour1, colour2, colour3, colour4, colour5};
-    modeDigitalClock();
-    char * time;
-    char key;
-    while (1) {
-        key = getKeyInput();
-        switch (key) {
-            case 'c': //hotkey
-                colourIndex = (colourIndex+1)%COLOUR_SIZE;
-                void beep();
-                break;
-            case 'q': // beep
-                modeScreen();
-                return;
-                break;
-        }
-        time = getTime();
-        putTime(time, myColours[colourIndex]);
-    }
-}
-*/
 void showDigitalHour(){
-  systemCall(CLOCK, 1,0,0,0);
+  systemCall(CLOCK, 0,0,0,0);
 
   char key;
   while (1) {
@@ -68,10 +41,7 @@ void showDigitalHour(){
               break;
       }
       systemCall(CLOCK, 3,0,0,0);
-
-  //systemCall(WRITE, CLOCK,0,0,0);
-}
-
+  }
 }
 
 int div100(int n) {

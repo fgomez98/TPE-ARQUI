@@ -1,11 +1,3 @@
-/* sampleCodeModule.c */
-/*
-char * v = (char*)0xB8000 + 79 * 2;
-
-static int var1 = 0;
-static int var2 = 0;*/
-
-
 #include <stdint.h>
 #include <stdarg.h>
 #include"stdio.h"
@@ -26,8 +18,7 @@ void printf(char* fmt, ...);
 
 int main() {
     printf("hola %d  %s   %c", 5, "walter", 95);
-	help();
-
+    help();
 
 
 	static char command[MAXLENGTH];//AVERIGUAR EL TOPE
@@ -43,8 +34,8 @@ int main() {
 			else if(strcmp("digitalTime", command) == 0){
 				showDigitalHour();
 			}
-			else if(strcmp("digitalTime", command) == 0){
-				showTime();
+			else if(strcmp("Time", command) == 0){
+				//showTime();
 			}
 			else if(strcmp("clear", command)==0){
 				cleanScreen();

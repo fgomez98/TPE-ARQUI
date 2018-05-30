@@ -91,6 +91,8 @@ void putChar(char c, Colour colour) {
     boundaryCorrector();
     if (c == '\n') {
         newLine();
+        XPOSITION2 = XPOSITION;
+        YPOSITION2 = YPOSITION;
         return;
     } else if (c == '\b') {
         deleteChar();
@@ -103,14 +105,19 @@ void putChar(char c, Colour colour) {
 
 void deleteChar() {
     XPOSITION -= (CHAR_WIDTH + X_SPACE);
-    
+    if (XPOSITION2 > XPOSITION) {
+        if (YPOSITION2 < YPOSITION) {
+            XPOSITION += (CHAR_WIDTH + X_SPACE);
+            return;
+        }
+    }
     boundaryCorrector();
-    for (int y = 0; y < 16; y++) {
+    /*for (int y = 0; y < 16; y++) {
         for (int x = 0; x < 8; x++) {
             putPixel(x + XPOSITION, y + YPOSITION, black);
         }
-    }
-    //printChar(' ', black);
+    }*/
+    printChar(' ', black);
     //boundaryCorrector();
 }
 
