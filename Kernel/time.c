@@ -28,7 +28,11 @@ int seconds_elapsed() {
 
 char * getTime() {
     static char buf[8] = {0};
-    uintToBase(abs((getHour()-3)%24), buf, 10);
+    int hour = getHour()-3;
+    if (hour < 0) {
+        hour + 24;
+    }
+    uintToBase(hour, buf, 10);
     if (buf[1] == 0) {
         buf[1] = buf[0];
         buf[0] = '0';

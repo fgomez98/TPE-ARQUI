@@ -91,7 +91,16 @@ int main() {
     colour.Green = 255;
     colour.Blue = 255;
 
-  //  putStr("234", colour);
+    while (1) {
+        char c = getKeyInput();
+        if (c == '\b') {
+            deleteChar();
+        } else if (c == '\n') {
+            newLine();
+        }else if (c > 0 && c < 127) {
+            putChar(c, colour);
+        }
+    }
 
 
 		uint64_t a;
@@ -100,29 +109,6 @@ int main() {
 		 newLine();
     putHexa(a, colour);
 
-  //  putStr("no entro al userland", colour);
-
-
-
-    /*  putStr("234", colour);
-     newLine();
-     modeDigitalClock();
-     showTime(); // esta en while(1)
-     putStr("234", colour);
-     //modeDigitalClock();
-     //showTime(); // esta en while(1)
-     putChar('s', colour);
-     while (1) {
-     char getchar();
-     int isEmpty();
-     if (!isEmpty()) {
-     putChar(getchar(), colour);
-     newLine();
-     }
-     }
-     */
-
-
-
+  
 	return 0;
 }

@@ -27,9 +27,6 @@ void Keyboard_Handler() { // una vez apretada una tecla se soltara una interrupc
             case LSHIFT_R: // shift
                 SHIFT_ON = FALSE;
                 break;
-            case CTRL_R: //  cntrl
-                CNTRL_ON = FALSE;
-                break;
         }
     } else { // se apreto una tecla, si alguna ya fue apretada antes y se mantiene pulasada esta enviara multiples interrupciones, si fuese una tecla especial esta estaria seteada en TRUE y al apretar luego una tecla accedemos a su respectivo mapa
         switch (scan) {
@@ -41,9 +38,6 @@ void Keyboard_Handler() { // una vez apretada una tecla se soltara una interrupc
                 break;
             case CAPS:  // caps
                 CAPS_ON = !CAPS_ON;
-                break;
-            case CTRL: //  cntrl
-                CNTRL_ON = TRUE;
                 break;
             //case BACKSPACE:
               //  addToBuffer(-1);
@@ -65,7 +59,7 @@ void Keyboard_Handler() { // una vez apretada una tecla se soltara una interrupc
     }
 }
 
-char getKeyInput() { // retorna el input del teclado si es que hubo alguna 0 si no, -1 si el input es un backspace
+char getKeyInput() {
     if (size <= 0) {
         return 0;
     }

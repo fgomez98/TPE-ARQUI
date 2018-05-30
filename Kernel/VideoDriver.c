@@ -57,8 +57,8 @@ Colour white = {255, 255, 255};
 static Vesa * video = (Vesa*)0x5C00;
 static int XPOSITION = X_SPACE;
 static int YPOSITION = Y_SPACE;
-//static int XPOSITION2 = X_SPACE;
-//static int YPOSITION2 = Y_SPACE;
+static int XPOSITION2 = X_SPACE;
+static int YPOSITION2 = Y_SPACE;
 
 void putPixel(int x, int y, Colour colour) {
 	unsigned whereOnScreen = y*video->pitch + x*(video->BitsPerPixel/8);
@@ -86,16 +86,16 @@ void printChar(char c, Colour colour) {
     }
 }
 
-int RGBColourToInt(Colour colour) {
-  int c = colour.Red;
-  c = (c << 8) | colour.Green;
-  c = (c << 8) | colour.Blue;
-  return c;
-}
-
 // imprime un caracter en pantalla
 void putChar(char c, Colour colour) {
     boundaryCorrector();
+    if (c == '\n') {
+        newLine();
+        return;
+    } else if (c == '\b') {
+        deleteChar();
+        return;
+    }
     printChar(c, colour);
     XPOSITION += CHAR_WIDTH + X_SPACE;
     boundaryCorrector();
@@ -103,6 +103,7 @@ void putChar(char c, Colour colour) {
 
 void deleteChar() {
     XPOSITION -= (CHAR_WIDTH + X_SPACE);
+    
     boundaryCorrector();
     for (int y = 0; y < 16; y++) {
         for (int x = 0; x < 8; x++) {
@@ -110,7 +111,7 @@ void deleteChar() {
         }
     }
     //printChar(' ', black);
-    boundaryCorrector();
+    //boundaryCorrector();
 }
 
 void putStrAux(char * str, Colour colour) {
@@ -156,7 +157,7 @@ void newLine() {
 }
 
 void boundaryCorrector() {
-    if (video->XResolution < XPOSITION || ((video->XResolution - XPOSITION) < (8+X_SPACE))) {
+    if ((video->XResolution - X_SPACE) <= XPOSITION || ((video->XResolution - XPOSITION - X_SPACE) < (8+X_SPACE))) {
         newLine();
     } else if ((video->YResolution -Y_SPACE - CHAR_HEIGHT) <= YPOSITION) {
         YPOSITION -= (CHAR_HEIGHT + Y_SPACE);
@@ -166,7 +167,8 @@ void boundaryCorrector() {
     } else if (XPOSITION < X_SPACE) {
         if (YPOSITION > (Y_SPACE + CHAR_HEIGHT)) {
             YPOSITION -= (Y_SPACE + CHAR_HEIGHT);
-            XPOSITION = video->XResolution - X_SPACE - CHAR_WIDTH;
+            int aux = video->XResolution / (X_SPACE + CHAR_WIDTH); // cant que entra
+            XPOSITION = (X_SPACE + CHAR_WIDTH)*aux+X_SPACE;
         } else {
             XPOSITION = X_SPACE;
         }
