@@ -18,7 +18,7 @@ extern void opcodeExc();
 
 
 void help(){
-  printf("HELP\n");
+  printf("\nHELP\n");
 }
 
 void cleanScreen(){

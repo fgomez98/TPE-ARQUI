@@ -17,7 +17,9 @@ extern void systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg
 void printf(char* fmt, ...);
 
 int main() {
-    printf("hola %d  %s   %c", 5, "walter", 95);
+
+    printf("\nWelcome\n");
+    //printf("hola %d  %s   %c", 5, "walter", 95);
     help();
 
 
@@ -34,12 +36,10 @@ int main() {
 			else if(strcmp("digitalTime", command) == 0){
 				showDigitalHour();
 			}
-			else if(strcmp("Time", command) == 0){
+			else if(strcmp("time", command) == 0){
 				//showTime();
 			}
-			else if(strcmp("clear", command)==0){
-				cleanScreen();
-			}
+
 			else if(strcmp("div", command) == 0){
 				divi();
 			}
@@ -50,7 +50,7 @@ int main() {
 				running = 0;
 			}
 			else{
-				printf("Unknown command, type help");
+				printf("\nUnknown command, type help\n");
 			}
 
 	}
