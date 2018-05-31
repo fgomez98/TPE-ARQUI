@@ -30,6 +30,7 @@ int main() {
 	 printf("$>");
 	 scanAndPrint(command);
 
+
 			if(strcmp("help", command) == 0){
 					help();
 			}
@@ -39,6 +40,10 @@ int main() {
 			else if(strcmp("time", command) == 0){
 				//showTime();
 			}
+      else if(strcmp("clear", command) == 0){
+        cleanScreen();
+      }
+
 
 			else if(strcmp("div", command) == 0){
 				divi();

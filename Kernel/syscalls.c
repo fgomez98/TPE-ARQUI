@@ -70,7 +70,7 @@ void writeM(uint64_t fileDes, uint64_t toPrint, uint64_t size, uint64_t aux){
 
   switch(fileDes){
     case CLEAR:
-      clearScreen();
+			modeScreen();
     	break;
 
     case STDOUT:
