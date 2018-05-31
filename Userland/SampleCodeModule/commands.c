@@ -19,6 +19,13 @@ extern void opcodeExc();
 
 void help(){
   printf("\nHELP\n");
+  printf("help - \n");
+  printf("digitalTime - displays time in digital format. Press c to change colour and q to exit\n");
+  printf("time - displays current time\n");
+  printf("clear - clears screen\n");
+  printf("cero division - shows how the cero division exception is handled\n");
+  printf("invalid opcode - shows how the cero division exception is handled\n");
+  printf("exit - exits from shell\n");
 }
 
 void cleanScreen(){

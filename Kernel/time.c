@@ -52,6 +52,7 @@ char * getTime() {
     return buf;
 }
 
+/*
 void showTime() {
     Colour myColours[5] = {colour1, colour2, colour3, colour4, colour5};
     modeDigitalClock();
@@ -73,7 +74,7 @@ void showTime() {
         putTime(time, myColours[colourIndex]);
     }
 }
-
+*/
 void updateCoulourAndBeep(){
 	colourIndex = (colourIndex+1)%COLOUR_SIZE;
 	void beep();

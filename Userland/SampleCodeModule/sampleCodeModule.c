@@ -45,10 +45,10 @@ int main() {
       }
 
 
-			else if(strcmp("div", command) == 0){
+			else if(strcmp("cero division", command) == 0){
 				divi();
 			}
-			else if(strcmp("opcodeExc", command) == 0){
+			else if(strcmp("invalid opcode", command) == 0){
 				showOpcodeExc();
 			}
 			else if(strcmp("exit", command) == 0){
