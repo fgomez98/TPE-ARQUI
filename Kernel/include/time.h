@@ -6,5 +6,7 @@ int ticks_elapsed();
 int seconds_elapsed();
 char * getTime();
 void showTime();
+void updateCoulourAndBeep();
+void displayTime();
 
 #endif

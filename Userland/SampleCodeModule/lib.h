@@ -1,11 +1,9 @@
 #ifndef lib_h
 #define lib_h
+#include <stdint.h>
 
 #define MAXLENGTH 100
-//void printf(char* fmt, ...);
-void scanf(char* fmt, char* buffer);
-int strcmp(char string1[], char string2[] );
-char getChar();
-char *convert(unsigned int num, int base) ;
+
+uint64_t uintToBase(uint64_t value, char * buffer, uint64_t base);
 
 #endif

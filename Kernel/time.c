@@ -28,7 +28,11 @@ int seconds_elapsed() {
 
 char * getTime() {
     static char buf[8] = {0};
-    uintToBase(abs((getHour()-3)%24), buf, 10); 
+    int hour = getHour()-3;
+    if (hour < 0) {
+        hour + 24;
+    }
+    uintToBase(hour, buf, 10);
     if (buf[1] == 0) {
         buf[1] = buf[0];
         buf[0] = '0';
@@ -48,6 +52,7 @@ char * getTime() {
     return buf;
 }
 
+/*
 void showTime() {
     Colour myColours[5] = {colour1, colour2, colour3, colour4, colour5};
     modeDigitalClock();
@@ -69,9 +74,17 @@ void showTime() {
         putTime(time, myColours[colourIndex]);
     }
 }
+*/
+void updateCoulourAndBeep(){
+	colourIndex = (colourIndex+1)%COLOUR_SIZE;
+	void beep();
+}
 
 
+void displayTime(){
+	char * time;
+	Colour myColours[5] = {colour1, colour2, colour3, colour4, colour5};
 
-
-
-
+	time = getTime();
+	putTime(time, myColours[colourIndex]);
+}

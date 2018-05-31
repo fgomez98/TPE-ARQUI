@@ -1,11 +1,3 @@
-/* sampleCodeModule.c */
-/*
-char * v = (char*)0xB8000 + 79 * 2;
-
-static int var1 = 0;
-static int var2 = 0;*/
-
-
 #include <stdint.h>
 #include <stdarg.h>
 #include"stdio.h"
@@ -16,7 +8,8 @@ static int var2 = 0;*/
 #define STDIN 0
 #define CLEAR 0
 
-extern void systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
+
+extern void systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5);
 
 
 #include "commands.h"
@@ -25,46 +18,46 @@ void printf(char* fmt, ...);
 
 int main() {
 
+    printf("\nWelcome!! Please type help to get a list of our commands\n");
+
+
 	static char command[MAXLENGTH];//AVERIGUAR EL TOPE
-	//int running = 1;
-//	while (running){
+	int running = 1;
+	while (running){
 
-	printf("TEngo %d argumentos", 1);
-	printf("holis");
 	 printf("$>");
-<<<<<<< Updated upstream
 	 scanAndPrint(command);
-=======
->>>>>>> Stashed changes
-	 //showDigitalHour();
 
-		/*	scanf("%s",command); //pone en command lo que el usuario ingreso hasta apretar enter
 
-			if(strcmp("ayuda", command) == 0){
+			if(strcmp("help", command) == 0){
 					help();
 			}
-			else if(strcmp("hora", command) == 0){
-				showHour();
-			}
-			else if(strcmp("horaDigital", command) == 0){
+			else if(strcmp("digitalTime", command) == 0){
 				showDigitalHour();
 			}
-			else if(strcmp("divisionPor0exc", command) == 0){
-				show0exc();
+			else if(strcmp("time", command) == 0){
+				//showTime();
 			}
-			else if(strcmp("", command) == 0){
+      else if(strcmp("clear", command) == 0){
+        cleanScreen();
+      }
+
+
+			else if(strcmp("cero division", command) == 0){
+				divi();
+			}
+			else if(strcmp("invalid opcode", command) == 0){
 				showOpcodeExc();
 			}
-			else if(strcmp("salir", command) == 0){
+			else if(strcmp("exit", command) == 0){
 				running = 0;
 			}
 			else{
-				printf("Comando no encontrado");
+				printf("\nUnknown command, type help\n");
 			}
 
-*/
-
-//	}
+	}
+	printf("See you soon!");
 
 	return 2;
 }

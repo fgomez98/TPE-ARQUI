@@ -4,40 +4,46 @@
 #define INVALIDOPCODE_EXCEPTION_ID 1
 
 //hacer despues el .h
-static void zero_division();
-static void invalid_opcode();
+static void zero_division(uint64_t *stackPointer);
+static void invalid_opcode(uint64_t *stackPointer);
 void printIpAndRegs(uint64_t* stackPointer);
+extern void backToMain();
 
 void exceptionDispatcher(uint64_t exception, uint64_t *stackPointer) {
 	switch(exception){
 		case ZERO_EXCEPTION_ID:
-			zero_division();
+			zero_division(stackPointer);
 			//como hice pushstate antes de llamar a la handler, tengo todos los registros
 			//a partir de donde empieza el stackPointer
 		break;
 		case INVALIDOPCODE_EXCEPTION_ID:
-			invalid_opcode();
+			invalid_opcode(stackPointer);
 		break;
 	}
+
+}
+
+static void zero_division(uint64_t *stackPointer) {
+	Colour colour;
+	colour.Red = 255;
+	colour.Green = 255;
+	colour.Blue = 255;
+	newLine();
+
+	putStr("ERROR: DIVISION POR CERO", colour);
 	printIpAndRegs(stackPointer);
+	backToMain();
 }
 
-static void zero_division() {
+static void invalid_opcode(uint64_t *stackPointer){
 	Colour colour;
 	colour.Red = 255;
 	colour.Green = 255;
 	colour.Blue = 255;
-	putStr("ERROR: DIVISION POR 0", colour);
-//imprime  instruction pointer y registros en el momento del error.
-
-}
-
-static void invalid_opcode(){
-	Colour colour;
-	colour.Red = 255;
-	colour.Green = 255;
-	colour.Blue = 255;
+		newLine();
 	putStr("ERROR: CODIGO DE OPERACION INVALIDO", colour);
+	printIpAndRegs(stackPointer);
+	backToMain();
 }
 
 

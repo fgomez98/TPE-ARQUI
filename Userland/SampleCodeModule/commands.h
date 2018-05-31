@@ -4,7 +4,10 @@
 void help();
 void showHour();
 void showDigitalHour();
-void show0exc();
 void showOpcodeExc();
+void cleanScreen();
+void showTime();
+void divi();
+int div100(int n);
 
 #endif

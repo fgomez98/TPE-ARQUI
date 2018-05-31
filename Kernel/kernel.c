@@ -90,40 +90,26 @@ int main() {
     colour.Red = 255;
     colour.Green = 255;
     colour.Blue = 255;
+ /*
+    while (1) {
+        char c = getKeyInput();
+        if (c == '\b') {
+            deleteChar();
+        } else if (c == '\n') {
+            newLine();
+        }else if (c > 0 && c < 127) {
+            putChar(c, colour);
+        }
+    }
+*/
+    
+   // showTime();
+		uint64_t a;
 
-  //  putStr("234", colour);
-
-
-		uint64_t a = 3;
-		putHexa(a, colour);
-		newLine();
 		 a = ((EntryPoint)sampleCodeModuleAddress)();
-
+		 newLine();
     putHexa(a, colour);
 
-  //  putStr("no entro al userland", colour);
-
-
-
-    /*  putStr("234", colour);
-     newLine();
-     modeDigitalClock();
-     showTime(); // esta en while(1)
-     putStr("234", colour);
-     //modeDigitalClock();
-     //showTime(); // esta en while(1)
-     putChar('s', colour);
-     while (1) {
-     char getchar();
-     int isEmpty();
-     if (!isEmpty()) {
-     putChar(getchar(), colour);
-     newLine();
-     }
-     }
-     */
-
-
-
+  
 	return 0;
 }
