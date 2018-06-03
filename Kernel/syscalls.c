@@ -84,6 +84,20 @@ void write(uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t 
 					case 5:
 					putPixel(arg2, arg3, colour);
 					break;
+
+					case 6:
+						switch(arg4){
+							case 0:
+								getHour();
+							break;
+							case 1:
+								getMin();
+							break;
+							case 2:
+								getSec();
+							break;
+						}
+					break;
 				}
 
 		}
