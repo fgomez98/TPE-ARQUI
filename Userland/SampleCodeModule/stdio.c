@@ -8,7 +8,7 @@
 
 static char buffer[MAXLENGTH];
 
-extern unsigned int systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5);
+extern unsigned int systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
 
 void scanAndPrint(char* buffer) {
 
@@ -17,11 +17,11 @@ void scanAndPrint(char* buffer) {
 
   while(((k = getChar()) != '\n')  && i< MAXLENGTH - 1){
     if(k == '\b'){
-      systemCall(WRITE, STDOUT,0,0,1);
+      systemCall(WRITE, STDOUT,3,0,0,0);
       i--;
     }
     else if (k > 0 && k < 127) {
-      systemCall(WRITE, STDOUT, k,1,0);
+      systemCall(WRITE, STDOUT, 1, k,0,0);
       buffer[i++] = k;
     }
 
@@ -42,16 +42,16 @@ void scanAndPrint(char* buffer) {
 }
 
 void putChar(char c) {
-    systemCall(WRITE, STDOUT, c,1,0);
+    systemCall(WRITE, STDOUT, 1,c,0,0);
 }
 
 void putString(char * str) {
-    systemCall(WRITE, STDOUT, str,0,0);
+    systemCall(WRITE, STDOUT, 0,str,0,0);
 }
 char getChar(){
   char c=0;
 	while(1) {
-    systemCall(READ, STDIN, &c,1, 1);
+    systemCall(READ, STDIN, &c,1, 1,0);
     if ( c > 0 && c <128) {
       return c;
     }

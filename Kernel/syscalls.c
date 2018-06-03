@@ -12,103 +12,89 @@
 
 
 
-void writeM(uint64_t fileDes, uint64_t toPrint, uint64_t size,  uint64_t aux);
-void readM(uint64_t fileDes, uint64_t buffer, uint64_t size, uint64_t aux );
+void write(uint64_t arg2, uint64_t arg3, uint64_t arg4,  uint64_t arg5,  uint64_t arg6);
+void read(uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5 , uint64_t arg6);
 
-void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5);
-
-
-void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5){
-
-	Colour colour;
-	colour.Red = 255;
-	colour.Green = 255;
-	colour.Blue = 255;
+void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
 
 
+void syscall_handler(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6){
 
 	switch(arg1) {
 
     case READ:
-
-			readM(arg2, arg3, arg4, arg5);
+			read(arg2, arg3, arg4, arg5, arg6);
 			 break;
 		case WRITE:
-      writeM(arg2, arg3, arg4, arg5);
+      write(arg2, arg3, arg4, arg5, arg6);
 	 	break;
-
-		case CLOCK:
-			switch (arg2){
-				case 0:
-				modeDigitalClock();
-				break;
-				case 1:
-				modeScreen();
-				break;
-				case 2:
-				updateCoulourAndBeep();
-				break;
-				case 3:
-				displayTime();
-				break;
-			}
-
-		break;
-
 	}
-	return 0;
 }
 
 
 
 
-void writeM(uint64_t fileDes, uint64_t toPrint, uint64_t size, uint64_t aux){
+void write(uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6){
   Colour colour;
   colour.Red = 255;
   colour.Green = 255;
   colour.Blue = 255;
 
-  switch(fileDes){
+  switch(arg2){
     case CLEAR:
 			modeScreen();
     	break;
 
     case STDOUT:
 
-			if(aux==1){ // borro un caracter
-				deleteChar();
-			}
-			else if(aux ==2){
-				newLine();
-			}
-			else{
+				switch(arg3){
+					case 0:
+					putStr(arg4, colour);
+					 break;
 
-				switch(size){
 					case 1:
-					putChar(toPrint, colour);
+					putChar(arg4, colour);
 					break;
 
-					default:
-					putStr(toPrint, colour);
-					 break;
+					case CLOCK:
+					 switch (arg4){
+						 case 0:
+						 modeDigitalClock();
+						 break;
+						 case 1:
+						 modeScreen();
+						 break;
+						 case 2:
+						 updateCoulourAndBeep();
+						 break;
+						 case 3:
+						 displayTime();
+						 break;
+					 }
+					break;
+
+					case 3:
+					 deleteChar();
+					break;
+
+					case 4:
+					newLine();
+					break;
+
+					case 5:
+					putPixel(arg2, arg3, colour);
+					break;
 				}
 
-	    	break;
-
-	  }
-	}
+		}
 }
 
 
 
 
 
-void readM(uint64_t fileDes, uint64_t buffer, uint64_t size, uint64_t aux ){
-	Colour colour;
-  colour.Red = 255;
-  colour.Green = 255;
-  colour.Blue = 255;
+void read(uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5 , uint64_t arg6){
 
-	char * walter =(char *) buffer;
-	*(walter) =  getKeyInput();
+	char * p =(char *) arg3;
+	*(p) =  getKeyInput();
 }

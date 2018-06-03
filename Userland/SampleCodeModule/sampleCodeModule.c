@@ -57,7 +57,7 @@ int main() {
 			}
 
 	}
-	printf("See you soon!");
+	printf("\n\n\nSee you soon!");
 
-	return 2;
+	return 0;
 }

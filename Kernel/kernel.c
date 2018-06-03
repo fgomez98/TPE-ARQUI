@@ -83,33 +83,18 @@ int main() {
     // Pone en la tabla IDT el numero de excepcion o interrupcion junto
     //con la direccion de la funcion que la atiende
     load_idt();
-
-
-    //	probandoExcepcion();
+/*
     Colour colour;
     colour.Red = 255;
     colour.Green = 255;
     colour.Blue = 255;
- /*
-    while (1) {
-        char c = getKeyInput();
-        if (c == '\b') {
-            deleteChar();
-        } else if (c == '\n') {
-            newLine();
-        }else if (c > 0 && c < 127) {
-            putChar(c, colour);
-        }
-    }
-*/
-    
-   // showTime();
+
 		uint64_t a;
+*/
+		((EntryPoint)sampleCodeModuleAddress)();
 
-		 a = ((EntryPoint)sampleCodeModuleAddress)();
-		 newLine();
-    putHexa(a, colour);
 
-  
+
+
 	return 0;
 }
