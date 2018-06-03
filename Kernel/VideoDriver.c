@@ -228,7 +228,7 @@ void putDigitalNumber(Colour colour, int number) {
     printDigitalClockExp(colour, digitalClock_map(number));
 }
 
-void putTime(char * time, Colour colour) { // arreglar el caso 01:04:035
+void putTime(char * time, Colour colour) {
     char c;
     int i = 0;
     while ((c=time[i++])) {
