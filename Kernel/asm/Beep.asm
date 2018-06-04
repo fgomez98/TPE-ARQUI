@@ -1,5 +1,5 @@
 GLOBAL beep
-
+GLOBAL unBeep
 section .text
 
 beep:
@@ -19,4 +19,10 @@ beep:
 
     mov rsp, rbp
     pop rbp
+    ret
+
+unBeep:
+    in al, 0x61
+    mov al, 0x00
+    out 0x61, al
     ret

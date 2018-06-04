@@ -9,6 +9,7 @@
 #ifndef Beep_h
 #define Beep_h
 
+void unBeep();
 void beep();
 
 #endif

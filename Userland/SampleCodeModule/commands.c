@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include "VideoModule.h"
 #include "TimeModule.h"
+#include "systemCall.h"
 #define CLOCK 2
 #define WRITE 1
 #define STDOUT 1
@@ -11,7 +12,7 @@
 #define CLEAR 0
 #define BEEP 3
 #define SIZE 5
-extern unsigned int systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
+//extern unsigned int systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
 extern void opcodeExc();
 
 //static const int mycolours[SIZE] = {12354, 658456, 736534, 12444, 0xFF};
@@ -52,6 +53,7 @@ void showDigitalHour(){ //NO ESTA CAMBIANDO DE COLOR NOSE POR QUE
         switch (key) {
             case 'c': //hotkey
                 systemCall(WRITE, BEEP, 0,0,0,0);
+                systemCall(WRITE, BEEP, 1,0,0,0);
                 j++;
                 j = j % SIZE;
                 break;

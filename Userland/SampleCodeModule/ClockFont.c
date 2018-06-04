@@ -349,13 +349,13 @@ unsigned char digitalClockNumbers[] = {
     X,X,_,_,_,_,X,X,
     X,X,_,_,_,_,X,X,//3
     X,X,_,_,_,_,X,X,
+    X,X,_,_,_,_,X,X,
+    X,X,_,_,_,_,X,X,
+    X,X,_,_,_,_,X,X,//4
     X,X,X,X,X,X,X,X,
     X,X,X,X,X,X,X,X,
-    X,X,X,X,X,X,X,X,//4
     X,X,X,X,X,X,X,X,
-    _,_,_,_,_,_,X,X,
-    _,_,_,_,_,_,X,X,
-    _,_,_,_,_,_,X,X,//5
+    X,X,X,X,X,X,X,X,//5
     _,_,_,_,_,_,X,X,
     _,_,_,_,_,_,X,X,
     _,_,_,_,_,_,X,X,

@@ -94,9 +94,17 @@ void write(uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t 
                 break;
         }
         break;
+          
     case BEEP:
-          beep();
-          break;
+        switch (arg3) {
+            case 0:
+                beep();
+                break;
+            case 1:
+                unBeep();
+                break;
+        }
+        break;
   }
 }
 

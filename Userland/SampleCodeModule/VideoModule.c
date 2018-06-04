@@ -1,10 +1,11 @@
 #include "VideoModule.h"
+#include "systemCall.h"
 #define XRESOLUTION 1024
 #define YRESOLUTION 768
 #define STDOUT 1
 #define WRITE 1
 
-extern unsigned int systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
+//extern unsigned int systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
 
 void drawPixel(int x, int y, Colour colour) {
     int rgb = colour.Red;
