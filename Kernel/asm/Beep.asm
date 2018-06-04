@@ -23,6 +23,6 @@ beep:
 
 unBeep:
     in al, 0x61
-    mov al, 0x00
+    and al, 0xFC
     out 0x61, al
     ret

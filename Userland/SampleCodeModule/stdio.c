@@ -18,8 +18,10 @@ void scanAndPrint(char* buffer) {
 
   while(((k = getChar()) != '\n')  && i< MAXLENGTH - 1){
     if(k == '\b'){
-      systemCall(WRITE, STDOUT,3,0,0,0);
-      i--;
+        if (i > 0) {
+            systemCall(WRITE, STDOUT,3,0,0,0);
+            i--;
+        }
     }
     else if (k > 0 && k < 127) {
       systemCall(WRITE, STDOUT, 1, k,0,0);
