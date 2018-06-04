@@ -31,18 +31,7 @@ void scanAndPrint(char* buffer) {
   	}
     buffer[i]=0;
 
-  /*k = getChar();
-  if (k > 0 && k < 127) {
-    systemCall(WRITE, STDOUT, k,1,0);
-    buffer[i++] = k;
   }
-  else if(k == '\b'){
-    systemCall(WRITE, STDOUT,0,0,1);
-    i--;
-  }
-  buffer[i]=0;
-*/
-}
 
 void putChar(char c) {
     systemCall(WRITE, STDOUT, 1,c,0,0);
@@ -105,4 +94,78 @@ void printf(char* fmt, ...) {
         fmt++;
     }
     va_end(args);
+}
+
+
+int scanf(const char* fmt, ...){
+  va_list args;
+  va_start(args, fmt);
+  getInput(buffer);
+
+  char * str = buffer;
+  int i = 0;
+  char* c;
+
+  while(*fmt){
+    if(*fmt != '%'){
+      if((*fmt) != (*str)){
+        return i;
+      } else {
+        fmt++;
+        str++;
+      }
+    }else{
+      fmt++;
+      switch(*fmt){
+        case 'd': str = getInt(str, va_arg(args, int));
+                  i++;
+                  break;
+        case 's': c = getString(str, va_arg(args, char*));
+                  i++;
+                  break;
+        case 'c': c = va_arg(args,char*);
+                  *c = *str++;
+                  i++;
+                  break;
+      }
+    }
+  }
+  return i;
+}
+
+char * getInt(const char * str, int * n){
+  while (!isNum(*str) && !(*str == '-' && isNum(*(str + 1)))){
+    str++;
+  }
+  *n = atoi(str);
+  while(*str && *str != ' '){
+    str++;
+  }
+  return str;
+}
+
+
+char* getString(const char * str, char* source){
+  while(*str){
+    *source = *str;
+    *source++;
+    *str++;
+  }
+  return str;
+}
+
+void getInput(char * string){
+  char c;
+  int i=0;
+
+  while((c = getChar()) != '\n'){
+    putChar(c);
+    if(i < MAXLENGTH && (c != '\b' && c != '$') && (c > 0 && c < 127)){
+      string[i++] = c;
+    }
+    if(i == MAXLENGTH-1){
+      printf("MAX BUFFER CAPACITY EXCEEDED");
+    }
+  }
+  string[i] = '\0';
 }

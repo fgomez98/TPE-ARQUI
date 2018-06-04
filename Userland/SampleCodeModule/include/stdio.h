@@ -6,10 +6,17 @@
 #include <stdarg.h>
 #include "String.h"
 
-void printf(char* fmt, ...);
-void scanAndPrint(char* buffer);
 void putChar(char c);
 char getChar();
-int strcmp(char string1[], char string2[] );
+void putString(char * str);
+void printf(char* fmt, ...);
+int scanf(const char * fmt, ...);
+//int sscanf(const char* fmt, const char* str, ...);
+
+void scanAndPrint(char* buffer); //hay que borrar esto??
+
+void getInput(char * string);
+char * getInt(const char * str, int * n );
+char* getString(const char* str, char * source);
 
 #endif

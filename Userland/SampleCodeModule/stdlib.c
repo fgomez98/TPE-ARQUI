@@ -13,7 +13,7 @@ int atoi(char * str){
     i = 1;
   }
 
-  for(; str[i] != '\0'; i++){
+  for(; str[i] != '\0' && isNum(str[i]); i++){
     res = res*10 + str[i] - '0';
   }
 
@@ -26,4 +26,12 @@ int isNum(char c){
 
 int isAlpha(char c){
   return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+}
+
+int isSpace(char c){
+  return c == ' ';
+}
+
+int isSuper(char c){
+  return (c >= 'A') && (c <= 'Z');
 }
