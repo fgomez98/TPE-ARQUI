@@ -3,26 +3,24 @@
 #define YRESOLUTION 768
 #define STDOUT 1
 #define WRITE 1
-typedef struct {
-    uint8_t Red;
-    uint8_t Green;
-    uint8_t Blue;
-} Colour;
 
 extern unsigned int systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
 
-void drawPixel(int x, int y, int colour) {
-    systemCall(WRITE, STDOUT, 5, x, y, colour);
+void drawPixel(int x, int y, Colour colour) {
+    int rgb = colour.Red;
+    rgb = (rgb << 8) + colour.Green;
+    rgb = (rgb << 8) + colour.Blue;
+    systemCall(WRITE, STDOUT, 5, x, y, rgb);
 }
 
-void drawDigitalColon(int colour, int x, int y) {
+void drawDigitalColon(Colour colour, int x, int y) {
     drawDigitalClockExp(colour, colon_map(), x, y);
 }
 
-void drawDigitalNumber(int colour, int number, int x, int y) {
+void drawDigitalNumber(Colour colour, int number, int x, int y) {
     drawDigitalClockExp(colour, clock_map(number), x, y);
 }
-void drawDigitalClockExp(int colour, unsigned char * fontExp, int xPosition, int yPosition) {
+void drawDigitalClockExp(Colour colour, unsigned char * fontExp, int xPosition, int yPosition) {
     char font;
     int xpos = xPosition;
     for (int y = 0; y < 36; y++) {
@@ -32,7 +30,8 @@ void drawDigitalClockExp(int colour, unsigned char * fontExp, int xPosition, int
                 if (((font >> (8-x)) %2) != 0){
                     drawPixel(x + xPosition, y + yPosition, colour);
                 } else {
-                    drawPixel(x + xPosition, y + yPosition, 0);
+                    Colour black = {0,0,0};
+                    drawPixel(x + xPosition, y + yPosition, black);
                 }
             }
             xPosition += 8;
@@ -41,7 +40,7 @@ void drawDigitalClockExp(int colour, unsigned char * fontExp, int xPosition, int
     }
 }
 
-void drawTime(char * time, int colour) {
+void drawTime(char * time, Colour colour) {
     int xPosition = (XRESOLUTION/2) - 281;
     int yPosition = (YRESOLUTION/2) - 18;
     char c;

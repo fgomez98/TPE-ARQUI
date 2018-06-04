@@ -74,9 +74,8 @@ void write(uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t 
                 break;
             case 5:
                 ; // Nada
-                //Colour colour2 = intToRGB(arg6);
-                //putChar('C', colour2);
-                putPixel2(arg4, arg5, arg6);
+                Colour colour2 = intToRGB(arg6);
+                putPixel(arg4, arg5, colour2);
                 break;
             case 6:
                 ; //Nada

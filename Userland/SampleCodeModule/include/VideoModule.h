@@ -4,7 +4,13 @@
 #include <stdint.h>
 #include "ClockFont.h"
 
-void drawTime(char * time, int colour);
-void drawPixel(int x, int y, int colour);
+typedef struct {
+    uint8_t Red;
+    uint8_t Green;
+    uint8_t Blue;
+} Colour;
+
+void drawTime(char * time, Colour colour);
+void drawPixel(int x, int y, Colour colour);
 
 #endif

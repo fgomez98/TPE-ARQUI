@@ -14,8 +14,12 @@
 extern unsigned int systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
 extern void opcodeExc();
 
-static const int mycolours[SIZE] = {12354, 658456, 736534, 12444, 0xFF};
-
+//static const int mycolours[SIZE] = {12354, 658456, 736534, 12444, 0xFF};
+Colour colour1 = {255, 255, 255};
+Colour colour2 = {180, 40, 18};
+Colour colour3 = {200, 156, 12};
+Colour colour4 = {233, 80, 167};
+Colour colour5 = {46, 230, 210};
 void help(){
   printf("\nHELP:\n");
   printf("\n");
@@ -39,6 +43,7 @@ void showTime() {
 }
 
 void showDigitalHour(){ //NO ESTA CAMBIANDO DE COLOR NOSE POR QUE
+    Colour myColours[5] = {colour1, colour2, colour3, colour4, colour5};
     cleanScreen();
     char key;
     int j = 0;
@@ -55,7 +60,7 @@ void showDigitalHour(){ //NO ESTA CAMBIANDO DE COLOR NOSE POR QUE
                 return;
                 break;
         }
-        drawTime(getTime(), mycolours[j]);
+        drawTime(getTime(), myColours[j]);
     }
 }
 
