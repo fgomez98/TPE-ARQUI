@@ -17,8 +17,6 @@ static int CNTRL_ON = FALSE;
 void Keyboard_Handler() { // una vez apretada una tecla se soltara una interrupcion y luego la idt llama a esta funcion
     unsigned int scan = getKey();
     char input;
-    //Colour colour = {255, 255, 255};
-    //putStr("maite capa", colour);
     if (scan & 0x80) { // si el primer bit esta en 1 entnces una tecla fue soltada
         if (scan == 0xAA || scan == 0xB6) { // shift
             SHIFT_ON = FALSE;
@@ -34,9 +32,6 @@ void Keyboard_Handler() { // una vez apretada una tecla se soltara una interrupc
             case CAPS:  // caps
                 CAPS_ON = !CAPS_ON;
                 break;
-            //case BACKSPACE:
-              //  addToBuffer(-1);
-               // break;
         }
         if (SHIFT_ON) {
             input = getAsciiShiftCode(scan);

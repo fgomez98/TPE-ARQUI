@@ -68,6 +68,22 @@ void putPixel(int x, int y, Colour colour) {
 	*(screen +2) = colour.Blue;
 }
 
+void putPixel2(int x, int y, int colour) {
+    unsigned whereOnScreen = y*video->pitch + x*(video->BitsPerPixel/8);
+    char * screen = (char *) (video->PhysBasePtr + whereOnScreen);
+    *(screen) = colour & 255;
+    *(screen + 1) = (colour >> 8) & 255;
+    *(screen +2) = (colour >> 16) & 255;
+}
+
+Colour intToRGB(int i) {
+    Colour colour;
+    colour.Blue = (i & 255);
+    colour.Green = ((i >> 8) & 255);
+    colour.Red = ((i >> 16) & 255);
+    return colour;
+}
+
 void printChar(char c, Colour colour) {
     if (c == 0) {
         return;
@@ -77,7 +93,7 @@ void printChar(char c, Colour colour) {
     for (int y = 0; y < 16; y++) {
         font = font_char[y];
         for (int x = 0; x < 8; x++) {
-            if (((font >> 8-x) %2) != 0){
+            if (((font >> (8-x)) %2) != 0){
                 putPixel(x + XPOSITION, y + YPOSITION, colour);
             } else {
                 putPixel(x + XPOSITION, y + YPOSITION, black);
@@ -197,7 +213,7 @@ void moveScreenUp() {
     }
 
 }
-
+/*
 // impreime la hora en formato hh:mm:ss el paramtero es un string que respeta el formato especificado
 void printDigitalClockExp(Colour colour, unsigned char * fontExp) {
     char font;
@@ -241,7 +257,7 @@ void putTime(char * time, Colour colour) {
     XPOSITION = (video->XResolution/2) - 281;
     YPOSITION = (video->YResolution/2) - 18;
 }
-
+*/
 // la insercion de texto se realiza en el la parte inferior de la pantalla, unicamente se puede insertar en una linea del ancho de la pantalla
 /*void modeComand() {
     XPOSITION2 = XPOSITION;
@@ -266,7 +282,7 @@ void modeScreen() {
     XPOSITION = X_SPACE;
     YPOSITION = Y_SPACE;
 }
-
+/*
 // modo que permite mostrar el reloj en pantalla
 void modeDigitalClock() {
     //XPOSITION2 = X_SPACE;
@@ -275,6 +291,7 @@ void modeDigitalClock() {
     XPOSITION = (video->XResolution/2) - 281;
     YPOSITION = (video->YResolution/2) - 18;
 }
+ */
 /*
 // modo shell
 void shellMode() {
@@ -301,7 +318,7 @@ void clear(int i, int j) {
 
 // borra la linea de comandos en pantalla
 void clearComand() {
-    clear(0, (video->XResolution-CHAR_HEIGHT-Y_SPACE));
+    clear(0, (video->YResolution-CHAR_HEIGHT-Y_SPACE));
 }
 
 // borra la pantalla entera

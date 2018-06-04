@@ -36,14 +36,14 @@ int main() {
 				showDigitalHour();
 			}
 			else if(strcmp("time", command) == 0){
-				//showTime();
+				showTime();
 			}
       else if(strcmp("clear", command) == 0){
         cleanScreen();
       }
 
 
-			else if(strcmp("cero division", command) == 0){
+			else if(strcmp("zero division", command) == 0){
 				divi();
 			}
 			else if(strcmp("invalid opcode", command) == 0){

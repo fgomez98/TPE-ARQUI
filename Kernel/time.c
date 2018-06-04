@@ -7,6 +7,7 @@
 #include "Beep.h"
 #define COLOUR_SIZE 6
 static unsigned long ticks = 0;
+/*
 static Colour colour1 = {255, 255, 255};
 static Colour colour2 = {180, 40, 18};
 static Colour colour3 = {200, 156, 12};
@@ -14,6 +15,7 @@ static Colour colour4 = {233, 80, 167};
 static Colour colour5 = {46, 230, 210};
 static Colour colour6 = {200, 130, 40};
 static int colourIndex = 0;
+ */
 void timer_handler() {
 	ticks++;
 }
@@ -25,12 +27,12 @@ int ticks_elapsed() {
 int seconds_elapsed() {
 	return ticks / 18;
 }
-
+/*
 char * getTime() {
     static char buf[8] = {0};
     int hour = getHour()-3;
     if (hour < 0) {
-        hour + 24;
+        hour += 24;
     }
     uintToBase(hour, buf, 10);
     if (buf[1] == 0) {
@@ -51,7 +53,7 @@ char * getTime() {
     }
     return buf;
 }
-
+*/
 /*
 void showTime() {
     Colour myColours[5] = {colour1, colour2, colour3, colour4, colour5};
@@ -75,6 +77,7 @@ void showTime() {
     }
 }
 */
+/*
 void updateCoulourAndBeep(){
 	colourIndex = (colourIndex+1)%COLOUR_SIZE;
 	void beep();
@@ -88,3 +91,4 @@ void displayTime(){
 	time = getTime();
 	putTime(time, myColours[colourIndex]);
 }
+ */

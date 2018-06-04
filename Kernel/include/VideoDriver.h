@@ -15,8 +15,9 @@
 		uint8_t Green;
 		uint8_t Blue;
 	} Colour;
-
+Colour intToRGB(int i);
     void moveScreenUp();
+void putPixel2(int x, int y, int colour);
 	void putPixel(int x, int y, Colour color);
 // lee hasta un 0
     void putStr(char * str, Colour colour);

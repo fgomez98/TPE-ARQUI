@@ -8,8 +8,6 @@
 #define STDIN 0
 #define CLEAR 0
 
-extern void systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
-
 uint64_t uintToBase(uint64_t value, char * buffer, uint64_t base) {
     char *p = buffer;
     char *p1, *p2;
@@ -37,23 +35,3 @@ uint64_t uintToBase(uint64_t value, char * buffer, uint64_t base) {
     return digits;
 }
 
-
-/*
-
-
-
-int strcmp(char string1[], char string2[] ){
-    for (int i = 0; ; i++)
-    {
-        if (string1[i] != string2[i])
-        {
-            return string1[i] < string2[i] ? -1 : 1;
-        }
-
-        if (string1[i] == '\0')
-        {
-            return 0;
-        }
-    }
-}
-*/
