@@ -7,7 +7,7 @@
 static void zero_division(uint64_t *stackPointer);
 static void invalid_opcode(uint64_t *stackPointer);
 void printIpAndRegs(uint64_t* stackPointer);
-extern void backToMain();
+extern void backToMain(uint64_t);
 
 void exceptionDispatcher(uint64_t exception, uint64_t *stackPointer) {
 	switch(exception){
@@ -32,7 +32,7 @@ static void zero_division(uint64_t *stackPointer) {
 
 	putStr("ERROR: DIVISION POR CERO", colour);
 	printIpAndRegs(stackPointer);
-	backToMain();
+	//backToMain();
 }
 
 static void invalid_opcode(uint64_t *stackPointer){
@@ -41,9 +41,10 @@ static void invalid_opcode(uint64_t *stackPointer){
 	colour.Green = 255;
 	colour.Blue = 255;
 		newLine();
-	putStr("ERROR: CODIGO DE OPERACION INVALIDO", colour);
+	putStr("ERROR: CODIGO DE OPERACION INVALIDO\n", colour);
 	printIpAndRegs(stackPointer);
-	backToMain();
+//	backToMain(stackPointer[]);
+
 }
 
 
@@ -54,19 +55,21 @@ void printIpAndRegs(uint64_t* stackPointer){
 	colour.Blue = 255;
 
 	 char* regs[]= {"RAX ","RBX ","RCX ","RDX ","RBP ","RDI ","RSI ","R8 ","R9 ","R10 ","R11 ","R12 ","R13 ","R14 ","R15  "};
-	 newLine();
-	 /*ESTO ESTA BIEN?? stack frame tiene la direccion del
+
+	 /*stack frame tiene la direccion del
 	 r15. adelante esta r14 y asi sucesivamente. uno antes de r15 esta la direccion
-	 de retorno de la handler que seria el rip. esto esta bien???*/
-	 putStr("RIP ", colour);
-	 putHexa(*(stackPointer-4), colour);
-	for (int i =14, j=0; i>=0; i--, j++){
+	 de retorno de la handler que seria el rip. */
+
+	 int j=0;
+	 int i=0;
+	for (i =14, j=0; i>=0; i--, j++){
 		newLine();
 		putStr(regs[i], colour);
 		putHexa(stackPointer[j], colour);
 	}
-
-
-
 	newLine();
+	putStr("RIP ", colour);
+	putHexa(stackPointer[j], colour);
+	newLine();
+	backToMain(stackPointer + 8*j);
 }

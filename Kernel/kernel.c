@@ -9,7 +9,7 @@
 #include "Keyboard.h"
 #include "KeyboardDriver.h"
 #include "ScanCodes.h"
-extern void probandoExcepcion();
+
 
 extern uint8_t text;
 extern uint8_t rodata;
