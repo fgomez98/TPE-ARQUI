@@ -6,6 +6,10 @@ GLOBAL picSlaveMask
 GLOBAL haltcpu
 GLOBAL _hlt
 
+GLOBAL rip
+GLOBAL stack
+GLOBAL getStack
+
 GLOBAL _irq00Handler
 GLOBAL _irq01Handler
 GLOBAL _irq02Handler
@@ -92,13 +96,12 @@ SECTION .text
 
 	popState
 
+	mov rdi, [rip]
+	mov qword [rsp] , rdi
+	mov rdi, [stack]
+	mov qword [rsp + 3 * 8], rdi
 
-
-	mov qword [rsp],  400000h; estoy pisando la direccion de retorno para que la exception no se quede en un loop
-
-
-
-
+	;mov qword [rsp],  400000h; estoy pisando la direccion de retorno para que la exception no se quede en un loop
 	iretq
 %endmacro
 
@@ -173,10 +176,12 @@ haltcpu:
 	ret
 
 getStack:
-    mov rax, rsp
-    ret
+	mov rax, rsp
+	ret
+
+
 
 SECTION .bss
 	aux resq 1
-    dir resq 1
-    stack resq 1
+	rip resq 1
+	stack resq 1

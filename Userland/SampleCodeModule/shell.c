@@ -7,7 +7,7 @@ void initializeShell(){
 
   printf("Welcome to the shell!! Please type help to get a list of our commands\n");
 
-  static char command[MAXLENGTH];//AVERIGUAR EL TOPE
+  static char command[MAXLENGTH];
   int running = 1;
   while (running){
 

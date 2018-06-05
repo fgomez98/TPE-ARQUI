@@ -10,7 +10,9 @@
 #include "KeyboardDriver.h"
 #include "ScanCodes.h"
 
-
+extern uint64_t getStack();
+extern uint64_t rip;
+extern uint64_t stack;
 extern uint8_t text;
 extern uint8_t rodata;
 extern uint8_t data;
@@ -65,8 +67,8 @@ int main() {
     // Pone en la tabla IDT el numero de excepcion o interrupcion junto
     //con la direccion de la funcion que la atiende
     load_idt();
-    dir = sampleCodeModuleAddress;
-    stack = getStack() + 2*8;
+		stack = getStack();
+		rip = (uint64_t)sampleCodeModuleAddress;
     ((EntryPoint)sampleCodeModuleAddress)();
 
 	return 0;
