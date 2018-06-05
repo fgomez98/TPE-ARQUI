@@ -19,13 +19,13 @@ Colour intToRGB(int i);
     void moveScreenUp();
 void putPixel2(int x, int y, int colour);
 	void putPixel(int x, int y, Colour color);
-// lee hasta un 0
+// reads up to a 0
     void putStr(char * str, Colour colour);
     void putChar(char c, Colour colour);
 	int RGBColourToInt(Colour colour);
     void putDigitalColon(Colour colour);
     void putDigitalNumber(Colour colour, int number);
-// al inicio esta en modo screen
+//starts in mode Screen
     void modeScreen();
     void modeDigitalClock();
     void clearScreen();

@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 
+/*COntrols the creation and management of system calls*/
 void load_idt();
 void _syscall_handler();
 

@@ -24,28 +24,27 @@ DESCR_INT * idt = (DESCR_INT *) 0;	// IDT de 255 entradas
 static void setup_IDT_entry (int index, uint64_t offset);
 
 void load_idt() {
-  setup_IDT_entry (0x00, (uint64_t)&_exception0Handler);//division por 0
-  setup_IDT_entry (0x06, (uint64_t)&_exceptionInvalidOpcodeHandler);//codigo de operacion invalido
+  setup_IDT_entry (0x00, (uint64_t)&_exception0Handler);//0 division
+  setup_IDT_entry (0x06, (uint64_t)&_exceptionInvalidOpcodeHandler);//ivalid opcode
 
-  //esta vino escrita, es la del timer tick.
+  //timer tick
   setup_IDT_entry (0x20, (uint64_t)&_irq00Handler);
 
-  setup_IDT_entry (0x21, (uint64_t)&_irq01Handler); //itnerrupción de teclado
+  setup_IDT_entry (0x21, (uint64_t)&_irq01Handler); //keyboard interruption
   setup_IDT_entry (0x80, (uint64_t)&_syscall_handler);
 
-	//Solo interrupcion timer tick habilitadas
+	//Timer tick interruptions enabled only
 	picMasterMask(0xFE);
 	picSlaveMask(0xFF);
-    //Solo interrupcion teclado habilitadas
+    //Keyboard interruptions enabled ony
     picMasterMask(0xFD);
     picSlaveMask(0xFF);
 
 	_sti();
 }
 
-/*idt[0h] es la pos 0 de la tabla, idt[80h] es la pos 80h de la tabla.
-Lo que hace esta función es poner en la posición index de la tabla
-la dirección de la función que atiende a la interrupción
+/*idt[0h] is pos 0 the table, idt[80h]is pos 80 in the tablee.
+Puts in position index of the table the pointer to the function that is called by the interruption
 */
 static void setup_IDT_entry (int index, uint64_t offset) {
   idt[index].selector = 0x08;

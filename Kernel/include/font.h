@@ -1,6 +1,9 @@
 #ifndef FONT_H
 #define FONT_H
 
+/*Used to retrieve a type of font based on a character's ascii number, containing a grid with the format of pixels to be able to print on the screen.
+SEE CLOCK FONT FOR SIMILAR USES*/
+
 unsigned char * pixel_map(int c);
 unsigned char * digitalClock_map(int number);
 unsigned char * digitalColon();

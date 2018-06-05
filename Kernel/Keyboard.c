@@ -14,16 +14,16 @@ static int SHIFT_ON = FALSE;
 static int CAPS_ON = FALSE;
 static int CNTRL_ON = FALSE;
 
-// el codigo esta basado en osdev
+// Code based from OSDEV
 
-void Keyboard_Handler() { // una vez apretada una tecla se soltara una interrupcion y luego la idt llama a esta funcion
+void Keyboard_Handler() { // once a key is pressed, it calls an interrupton which the IDT will call this function
     unsigned int scan = getKey();
     char input;
-    if (scan & 0x80) { // si el primer bit esta en 1 entnces una tecla fue soltada
+    if (scan & 0x80) { //if first bit is 1 then the key was released
         if (scan == 0xAA || scan == 0xB6) { // shift
             SHIFT_ON = FALSE;
         }
-    } else { // se apreto una tecla, si alguna ya fue apretada antes y se mantiene pulasada esta enviara multiples interrupciones, si fuese una tecla especial esta estaria seteada en TRUE y al apretar luego una tecla accedemos a su respectivo mapa
+    } else { // a key was pressed,is another one was already pressed, and it remains being pressed, it will send multiple iterruption,if it is a special key set on TRUE, pressing another key will access to its special map
         switch (scan) {
             case RSHIFT: // shift
                 SHIFT_ON = TRUE;
