@@ -3,11 +3,9 @@
 #define ZERO_EXCEPTION_ID 0
 #define INVALIDOPCODE_EXCEPTION_ID 1
 
-//hacer despues el .h
 static void zero_division(uint64_t *stackPointer);
 static void invalid_opcode(uint64_t *stackPointer);
 void printIpAndRegs(uint64_t* stackPointer);
-extern void backToMain(uint64_t);
 
 void exceptionDispatcher(uint64_t exception, uint64_t *stackPointer) {
 	switch(exception){
@@ -32,7 +30,7 @@ static void zero_division(uint64_t *stackPointer) {
 
 	putStr("ERROR: DIVISION POR CERO", colour);
 	printIpAndRegs(stackPointer);
-	//backToMain();
+
 }
 
 static void invalid_opcode(uint64_t *stackPointer){
@@ -43,7 +41,7 @@ static void invalid_opcode(uint64_t *stackPointer){
 		newLine();
 	putStr("ERROR: CODIGO DE OPERACION INVALIDO\n", colour);
 	printIpAndRegs(stackPointer);
-//	backToMain(stackPointer[]);
+
 
 }
 
@@ -71,5 +69,5 @@ void printIpAndRegs(uint64_t* stackPointer){
 	putStr("RIP ", colour);
 	putHexa(stackPointer[j], colour);
 	newLine();
-	backToMain(stackPointer + 8*j);
+
 }

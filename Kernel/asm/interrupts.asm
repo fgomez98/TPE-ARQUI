@@ -58,7 +58,9 @@ SECTION .text
 %endmacro
 
 %macro irqHandlerMaster 1
+
 	pushState
+
 
 	mov rdi, %1 ; pasaje de parametro
 	mov rsi, rsp ; paso como segundo parametro la direccion del stack en el que estan pusheados todos los registros
@@ -75,13 +77,17 @@ SECTION .text
 
 
 %macro exceptionHandler 1
+
 	pushState
 
 	mov rdi, %1 ; pasaje de parametro
 	mov rsi, rsp ; paso como segundo parametro la direccion del stack en el que estan pusheados todos los registros
 	call exceptionDispatcher
 
+
 	popState
+	
+	mov qword [rsp],  400000h; estoy pisando la direccion de retorno para que la exception no se quede en un loop
 	iretq
 %endmacro
 

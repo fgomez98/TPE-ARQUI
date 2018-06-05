@@ -14,9 +14,10 @@
 void printf(char* fmt, ...);
 
 int main() {
-  printf("Loading shell....\n");
+  //printf("Loading shell....\n");
 
-  initializeShell();
+    initializeShell();
+
 
 	return 0;
 }
