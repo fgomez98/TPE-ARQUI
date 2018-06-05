@@ -17,6 +17,9 @@ extern uint8_t data;
 extern uint8_t bss;
 extern uint8_t endOfKernelBinary;
 extern uint8_t endOfKernel;
+extern uint64_t dir;
+extern uint64_t stack;
+extern uint64_t getStack();
 
 static const uint64_t PageSize = 0x1000;
 
@@ -43,7 +46,6 @@ void * getStackBase()
 
 void * initializeKernelBinary()
 {
-	//char buffer[10];
 
 	void * moduleAddresses[] = {
 		sampleCodeModuleAddress,
@@ -54,9 +56,6 @@ void * initializeKernelBinary()
 
 	clearBSS(&bss, &endOfKernel - &bss);
 
-
-
-
 	return getStackBase();
 }
 
@@ -66,10 +65,9 @@ int main() {
     // Pone en la tabla IDT el numero de excepcion o interrupcion junto
     //con la direccion de la funcion que la atiende
     load_idt();
+    dir = sampleCodeModuleAddress;
+    stack = getStack() + 2*8;
     ((EntryPoint)sampleCodeModuleAddress)();
-
-
-
 
 	return 0;
 }

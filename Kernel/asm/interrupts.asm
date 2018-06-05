@@ -15,7 +15,9 @@ GLOBAL _irq05Handler
 
 GLOBAL _exception0Handler
 GLOBAL _exceptionInvalidOpcodeHandler
-
+GLOBAL dir
+GLOBAL stack
+GLOBAL getStack
 EXTERN irqDispatcher
 EXTERN exceptionDispatcher
 
@@ -86,8 +88,8 @@ SECTION .text
 
 
 	popState
-	
-	mov qword [rsp],  400000h; estoy pisando la direccion de retorno para que la exception no se quede en un loop
+	mov qword [rsp], dir; estoy pisando la direccion de retorno para que la exception no se quede en un loop
+    mov qword[rsp + 3*8], stack
 	iretq
 %endmacro
 
@@ -161,7 +163,11 @@ haltcpu:
 	hlt
 	ret
 
-
+getStack:
+    mov rax, rsp
+    ret
 
 SECTION .bss
 	aux resq 1
+    dir resq 1
+    stack resq 1
