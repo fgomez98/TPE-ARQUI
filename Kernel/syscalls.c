@@ -48,24 +48,6 @@ void write(uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t 
             case 1:
                 putChar(arg4, colour);
                 break;
-            /*
-            case CLOCK:
-                switch (arg4){
-                    case 0:
-                        modeDigitalClock();
-                        break;
-                    case 1:
-                        modeScreen();
-                        break;
-                    case 2:
-                        updateCoulourAndBeep();
-                        break;
-                    case 3:
-                        displayTime();
-                        break;
-                }
-                break;
-             */
             case 3:
                 deleteChar();
                 break;

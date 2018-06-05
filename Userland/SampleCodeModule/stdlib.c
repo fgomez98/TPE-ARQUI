@@ -1,7 +1,6 @@
 #include "stdlib.h"
 #include "stdio.h"
 #include "systemCall.h"
-//extern void systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
 
 int atoi(char * str){
   int res = 0;

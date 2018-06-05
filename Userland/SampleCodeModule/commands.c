@@ -12,7 +12,7 @@
 #define CLEAR 0
 #define BEEP 3
 #define SIZE 5
-//extern unsigned int systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
+
 extern void opcodeExc();
 
 //static const int mycolours[SIZE] = {12354, 658456, 736534, 12444, 0xFF};
@@ -43,7 +43,7 @@ void showTime() {
     printf("\n");
 }
 
-void showDigitalHour(){ //NO ESTA CAMBIANDO DE COLOR NOSE POR QUE
+void showDigitalHour(){ 
     Colour myColours[5] = {colour1, colour2, colour3, colour4, colour5};
     cleanScreen();
     char key;
@@ -53,6 +53,7 @@ void showDigitalHour(){ //NO ESTA CAMBIANDO DE COLOR NOSE POR QUE
         switch (key) {
             case 'c': //hotkey
                 systemCall(WRITE, BEEP, 0,0,0,0);
+                delay(5000);
                 systemCall(WRITE, BEEP, 1,0,0,0);
                 j++;
                 j = j % SIZE;
@@ -78,4 +79,11 @@ void divi(){
 
 void showOpcodeExc(){
   opcodeExc();
+}
+
+void delay(int i) {
+    for (int j = 0; j < i; j++) {
+        for (int k = 0; k < i; k++) {
+        }
+    }
 }

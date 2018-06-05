@@ -4,7 +4,7 @@
 #include "stdlib.h"
 
 void initializeShell(){
-  //printf("Loading complete\n");
+
   printf("Welcome to the shell!! Please type help to get a list of our commands\n");
 
   static char command[MAXLENGTH];//AVERIGUAR EL TOPE
@@ -39,6 +39,6 @@ void initializeShell(){
       printf("\nUnknown command, type help\n");
     }
 
-}
-printf("\n\n\nSee you soon!");
+  }
+   printf("\n\n\nSee you soon!");
 }

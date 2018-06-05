@@ -60,38 +60,13 @@ void * initializeKernelBinary()
 	return getStackBase();
 }
 
-/*{
-	Colour colour;
-	colour.Red = 255;
-	colour.Green = 255;
-  colour.Blue = 255;
-	switch(arg1) {
-		case 0: putStr("PRobando handler", colour ); break;
-
-	}
-}*/
-void delay(int i) {
-    for (int j = 0; j < i; j++) {
-        for (int k = 0; k < i; k++) {
-        }
-    }
-}
-
 int main() {
 
 
     // Pone en la tabla IDT el numero de excepcion o interrupcion junto
     //con la direccion de la funcion que la atiende
     load_idt();
-/*
-    Colour colour;
-    colour.Red = 255;
-    colour.Green = 255;
-    colour.Blue = 255;
-
-		uint64_t a;
-*/
-		((EntryPoint)sampleCodeModuleAddress)();
+    ((EntryPoint)sampleCodeModuleAddress)();
 
 
 

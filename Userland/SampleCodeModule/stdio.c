@@ -9,8 +9,6 @@
 
 static char buffer[MAXLENGTH];
 
-//extern unsigned int systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
-
 void scanAndPrint(char* buffer) {
 
   char k;

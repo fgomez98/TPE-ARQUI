@@ -13,7 +13,9 @@ static int size = 0;
 static int SHIFT_ON = FALSE;
 static int CAPS_ON = FALSE;
 static int CNTRL_ON = FALSE;
+
 // el codigo esta basado en osdev
+
 void Keyboard_Handler() { // una vez apretada una tecla se soltara una interrupcion y luego la idt llama a esta funcion
     unsigned int scan = getKey();
     char input;

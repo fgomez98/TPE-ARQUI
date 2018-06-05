@@ -4,8 +4,6 @@
 #define WRITE 1
 #define STDOUT 1
 
-//extern unsigned int systemCall(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
-
 char * getTime() {
     static char buf[8] = {0};
     int aux;

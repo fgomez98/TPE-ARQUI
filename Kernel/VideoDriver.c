@@ -128,13 +128,7 @@ void deleteChar() {
         }
     }
     boundaryCorrector();
-    /*for (int y = 0; y < 16; y++) {
-        for (int x = 0; x < 8; x++) {
-            putPixel(x + XPOSITION, y + YPOSITION, black);
-        }
-    }*/
     printChar(' ', black);
-    //boundaryCorrector();
 }
 
 void putStrAux(char * str, Colour colour) {
@@ -213,100 +207,15 @@ void moveScreenUp() {
     }
 
 }
-/*
-// impreime la hora en formato hh:mm:ss el paramtero es un string que respeta el formato especificado
-void printDigitalClockExp(Colour colour, unsigned char * fontExp) {
-    char font;
-    int xpos = XPOSITION;
-    for (int y = 0; y < 36; y++) {
-        for (int j = 0; j < 8; j++) {
-            font = fontExp[(y*8)+j];
-            for (int x = 0; x < 8; x++) {
-                if (((font >> 8-x) %2) != 0){
-                    putPixel(x + XPOSITION, y + YPOSITION, colour);
-                } else {
-                    Colour colourBlank = {0, 0, 0};
-                    putPixel(x + XPOSITION, y + YPOSITION, colourBlank);
-                }
-            }
-            XPOSITION += 8;
-        }
-        XPOSITION = xpos;
-    }
-    XPOSITION += (64 + 10); // 10 es la distancia entre digitos
-}
 
-void putDigitalColon(Colour colour) {
-    printDigitalClockExp(colour, digitalColon());
-}
-
-void putDigitalNumber(Colour colour, int number) {
-    printDigitalClockExp(colour, digitalClock_map(number));
-}
-
-void putTime(char * time, Colour colour) {
-    char c;
-    int i = 0;
-    while ((c=time[i++])) {
-        if (c == ':') {
-            putDigitalColon(colour);
-        } else {
-            putDigitalNumber(colour, (c - '0'));
-        }
-    }
-    XPOSITION = (video->XResolution/2) - 281;
-    YPOSITION = (video->YResolution/2) - 18;
-}
-*/
-// la insercion de texto se realiza en el la parte inferior de la pantalla, unicamente se puede insertar en una linea del ancho de la pantalla
-/*void modeComand() {
-    XPOSITION2 = XPOSITION;
-    YPOSITION2 = YPOSITION;
-    XPOSITION = X_SPACE;
-    YPOSITION = (video->YResolution) - Y_SPACE - CHAR_HEIGHT;
-    putStr(">> ", white);
-}
-
-//al inicio esta en modo screen, inserta en la pantalla en la parte superior
-void modeScreen() {
-    XPOSITION = XPOSITION2;
-    YPOSITION = YPOSITION2;
-}
- */
 // modo shell
 //al inicio esta en modo screen, inserta en la pantalla en la parte superior
 void modeScreen() {
     clearScreen();
-    //modeScreen();
-    //modeComand();
     XPOSITION = X_SPACE;
     YPOSITION = Y_SPACE;
-}
-/*
-// modo que permite mostrar el reloj en pantalla
-void modeDigitalClock() {
-    //XPOSITION2 = X_SPACE;
-    //YPOSITION2 = Y_SPACE;
-    clearScreen();
-    XPOSITION = (video->XResolution/2) - 281;
-    YPOSITION = (video->YResolution/2) - 18;
-}
- */
-/*
-// modo shell
-void shellMode() {
-    clearScreen();
-    SHELL = TRUE;
-    XPOSITION = X_SPACE;
-    YPOSITION = Y_SPACE;
-    putStr("$>> ", white);
 }
 
-void newComand() {
-    newLine();
-    putStr("$>> ", white);
-}
-*/
 // borra la pantalla a partir de la poscion (x, y) dada
 void clear(int i, int j) {
     for (int y = j; y < video->YResolution; y++) {
