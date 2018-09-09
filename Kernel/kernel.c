@@ -10,7 +10,7 @@
 #include "KeyboardDriver.h"
 #include "ScanCodes.h"
 #include "BuddyAllocationSystem.h"
-
+extern uint64_t getStack();
 extern uint64_t rip;
 extern uint64_t stack;
 extern uint8_t text;
@@ -21,7 +21,7 @@ extern uint8_t endOfKernelBinary;
 extern uint8_t endOfKernel;
 extern uint64_t dir;
 extern uint64_t stack;
-extern uint64_t getStack();
+
 
 static const uint64_t PageSize = 0x1000;
 
@@ -60,7 +60,7 @@ void * initializeKernelBinary()
 
 	return getStackBase();
 }
-static char buff[8];
+//static char buff[8];
 int main() {
     //Colour colour = {255, 255, 255};
 

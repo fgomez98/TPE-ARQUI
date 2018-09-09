@@ -25,13 +25,11 @@ typedef struct list_t {
     struct list_t * next, * prev;
 } list_t;
 
-void dumpMemory();
-
 static uint8_t * baseAdress;
 extern uint8_t endOfKernel;
 static list_t * buckets[BUCKET_AMOUNT];
-static int splitBlocks[(1 << (BUCKET_AMOUNT - 1))];
-static int allocatedBlocks[1 << (BUCKET_AMOUNT)];
+static char splitBlocks[(1 << (BUCKET_AMOUNT - 1))];
+static char allocatedBlocks[1 << (BUCKET_AMOUNT)];
 static char buff[8];
 static Colour colour = {255, 255, 255};
 
