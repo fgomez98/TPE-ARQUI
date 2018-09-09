@@ -179,8 +179,6 @@ getStack:
 	mov rax, rsp
 	ret
 
-
-
 SECTION .bss
 	aux resq 1
 	rip resq 1

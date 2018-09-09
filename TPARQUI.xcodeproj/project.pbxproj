@@ -6,7 +6,30 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		44297C4C2142D8CD0074B3E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44E218B320B6319300764903 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 44E218B720B6319300764903;
+			remoteInfo = TPARQUI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		44297C422142D8AE0074B3E9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		44297C442142D8AE0074B3E9 /* Memory Manager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = "Memory Manager"; path = "/Users/fermingomez/Desktop/TPE-ARQUI/build/Debug/Memory Manager"; sourceTree = "<absolute>"; };
 		44E218B820B6319300764903 /* .DS_Store */ = {isa = PBXFileReference; lastKnownFileType = file; path = .DS_Store; sourceTree = "<group>"; };
 		44E218B920B6319300764903 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		44E218BA20B6319300764903 /* Bootloader */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Bootloader; sourceTree = "<group>"; };
@@ -22,6 +45,16 @@
 		44E218C420B6319300764903 /* x64BareBones.sublime-project */ = {isa = PBXFileReference; lastKnownFileType = text; path = "x64BareBones.sublime-project"; sourceTree = "<group>"; };
 		44E218C520B6319300764903 /* x64BareBones.sublime-workspace */ = {isa = PBXFileReference; lastKnownFileType = text; path = "x64BareBones.sublime-workspace"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		44297C412142D8AE0074B3E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		44E218B220B6319300764903 = {
@@ -63,10 +96,37 @@
 		};
 /* End PBXLegacyTarget section */
 
+/* Begin PBXNativeTarget section */
+		44297C432142D8AE0074B3E9 /* Memory Manager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44297C4B2142D8AE0074B3E9 /* Build configuration list for PBXNativeTarget "Memory Manager" */;
+			buildPhases = (
+				44297C402142D8AE0074B3E9 /* Sources */,
+				44297C412142D8AE0074B3E9 /* Frameworks */,
+				44297C422142D8AE0074B3E9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				44297C4D2142D8CD0074B3E9 /* PBXTargetDependency */,
+			);
+			name = "Memory Manager";
+			productName = "Memory Manager";
+			productReference = 44297C442142D8AE0074B3E9 /* Memory Manager */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
 /* Begin PBXProject section */
 		44E218B320B6319300764903 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0730;
+				TargetAttributes = {
+					44297C432142D8AE0074B3E9 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
 			};
 			buildConfigurationList = 44E218B620B6319300764903 /* Build configuration list for PBXProject "TPARQUI" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -76,35 +136,133 @@
 				en,
 			);
 			mainGroup = 44E218B220B6319300764903;
+			productRefGroup = 44E218B220B6319300764903;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				44E218B720B6319300764903 /* TPARQUI */,
+				44297C432142D8AE0074B3E9 /* Memory Manager */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXSourcesBuildPhase section */
+		44297C402142D8AE0074B3E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		44297C4D2142D8CD0074B3E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 44E218B720B6319300764903 /* TPARQUI */;
+			targetProxy = 44297C4C2142D8CD0074B3E9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		44297C492142D8AE0074B3E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		44297C4A2142D8AE0074B3E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		44E218B420B6319300764903 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		44E218B520B6319300764903 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -138,6 +296,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		44297C4B2142D8AE0074B3E9 /* Build configuration list for PBXNativeTarget "Memory Manager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44297C492142D8AE0074B3E9 /* Debug */,
+				44297C4A2142D8AE0074B3E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		44E218B620B6319300764903 /* Build configuration list for PBXProject "TPARQUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
