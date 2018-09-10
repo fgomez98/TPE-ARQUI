@@ -53,7 +53,7 @@ uint64_t uintToBase(uint64_t value, char * buffer, uint64_t base) {
     char *p = buffer;
     char *p1, *p2;
     uint64_t digits = 0;
-    
+
     //Calculate characters for each digit
     do {
         uint64_t remainder = value % base;
@@ -97,4 +97,14 @@ int abs(int num) {
     } else {
         return num;
     }
+}
+
+
+
+/*Recibe un puntero a un string, reserva espacio en memoria y lo copia alli*/
+char* duplicateString(const char* string){
+  int len = strlen(string);
+  char* newString = mallocMemory(sizeof(char)*(len+1));
+  memcpy(newString, string, len+1);
+return newString;
 }
