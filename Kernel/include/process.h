@@ -16,7 +16,12 @@ typedef struct{
   pState state; //process status
   void* stackPointer;;
   void* processMemoryLowerAddress;
+  tProcess *children; //queue with all the processes' children (fijense esto que les parece)
 }tProcess;
+
+typedef struct{
+  buff*
+}mailbox;
 
 //RowDaBoat
 typedef struct {
