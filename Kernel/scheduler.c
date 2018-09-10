@@ -16,7 +16,10 @@ typedef struct{
 
 static tProcessQueue processQueue;
 
-
+int removeProcessFromQueue(tProcess* process);
+tProcessNode* removeProcessFromQueueR(tProcessNode* current , int pid);
+int addProcessToQueue(tProcess* process);
+void startScheduler();
 
 void startScheduler(){
   processQueue.processAmount =0;
@@ -48,16 +51,38 @@ int addProcessToQueue(tProcess* process){
 
 
 
-int removeProcessFromQueue(int pid){
-  if(processQueue.processAmount <=0 || pid < 0 || pid == NULL){
+int removeProcessFromQueue(tProcess* process){
+  if(processQueue.processAmount <= 0 || process->pid < 0){
     return -1;
   }
+  processQueue.first = removeProcessFromQueueR(processQueue.first, process->pid);
+  return 0;
+}
 
-  tProcessNode* prev = processQueue.first;
-  tProcessNode* curr = processQueue.first;
+
+tProcessNode* removeProcessFromQueueR(tProcessNode* current , int pid){
+  if(current == NULL){
+    return current;
+  }
+
+  if(current->next->next == NULL && current->next->process->pid == pid){ //significa que habia que borrar el ultimo
+    processQueue.last = current;
+    deleteProcess(current->next->process);
+    freeMemory(current->next);
+    processQueue.processAmount--;
+    return current;
+  }
 
 
- //falta hacer. cuando encontras al nodo, llamar a deleteProcess
+  if(current->process->pid == pid){
+    tProcessNode* aux = current->next;
+    deleteProcess(current->process);
+    freeMemory(current);
+    processQueue.processAmount--;
+    return aux;
+  }
 
-return 0;
+  current->next = removeProcessFromQueueR(current->next, pid);
+
+return current;
 }
